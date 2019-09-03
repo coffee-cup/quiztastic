@@ -1,7 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
 import { CtaButton } from "../components/Button";
-import FullPage from "../components/FullPage";
 import { EmptyLink } from "../components/Link";
 
 const Blurb = styled.h2`

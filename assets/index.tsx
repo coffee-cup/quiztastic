@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./styles";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import App from "./App";
+import { theme } from "./styles";
 import typography from "./styles/typography";
 
 import "./index.scss";

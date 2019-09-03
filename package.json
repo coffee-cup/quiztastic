@@ -5,7 +5,8 @@
     "copy": "cp -R ./assets/static/* ./priv/static",
     "deploy": "yarn run copy && parcel build ./assets/index.tsx --out-dir ./priv/static/js --public-url /js --no-cache",
     "watch": "yarn run copy && parcel watch ./assets/index.tsx --out-dir ./priv/static/js --public-url /js",
-    "tsc": "tsc -p . --noEmit --watch"
+    "tsc": "tsc -p . --noEmit --watch",
+    "lint": "tslint -p ."
   },
   "dependencies": {
     "phoenix": "file:deps/phoenix",
@@ -15,6 +16,9 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "styled-components": "^4.3.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.0.0",
     "typography": "^0.16.19"
   },
   "devDependencies": {

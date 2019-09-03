@@ -1,7 +1,7 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { HeaderHeight } from "../styles";
-import { Link } from "react-router-dom";
 
 const StyledHeader = styled.header`
   display: flex;

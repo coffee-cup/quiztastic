@@ -1,10 +1,10 @@
 import * as React from "react";
-import Header from "./components/Header";
+import { Route, Switch } from "react-router";
 import styled from "styled-components";
-import { Switch, Route } from "react-router";
+import Header from "./components/Header";
+import Create from "./pages/Create";
 import Home from "./pages/Home";
 import Join from "./pages/Join";
-import Create from "./pages/Create";
 import Ready from "./pages/Ready";
 
 const Page = styled.div``;
