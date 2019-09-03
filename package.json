@@ -4,19 +4,28 @@
   "scripts": {
     "copy": "cp -R ./assets/static/* ./priv/static",
     "deploy": "yarn run copy && parcel build ./assets/index.tsx --out-dir ./priv/static/js --public-url /js --no-cache",
-    "watch": "yarn run copy && parcel watch ./assets/index.tsx --out-dir ./priv/static/js --public-url /js"
+    "watch": "yarn run copy && parcel watch ./assets/index.tsx --out-dir ./priv/static/js --public-url /js",
+    "tsc": "tsc -p . --noEmit --watch"
   },
   "dependencies": {
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "styled-components": "^4.3.2",
+    "typography": "^0.16.19"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
+    "@types/react-router": "^5.0.3",
+    "@types/react-router-dom": "^4.3.5",
+    "@types/styled-components": "4.1.8",
+    "@types/typography": "^0.16.2",
     "babel-loader": "^8.0.0",
     "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
@@ -25,6 +34,7 @@
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-stdin": "^0.1.1",
     "prettier": "^1.18.2",
+    "sass": "^1.23.0-module.beta.1",
     "tslint": "^5.19.0",
     "typescript": "^3.6.2",
     "uglifyjs-webpack-plugin": "^2.2.0"

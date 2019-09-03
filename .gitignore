@@ -22,8 +22,9 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 quiztastic-*.tar
 
-# If NPM crashes, it generates a log, let's ignore it too.
+# If NPM or Yarn crashes, it generates a log, let's ignore it too.
 npm-debug.log
+yarn-error.log
 
 # The directory NPM downloads your dependencies sources to.
 node_modules/
@@ -33,6 +34,8 @@ node_modules/
 # this depending on your deployment strategy.
 /priv/static/
 
-
 # Parcel
 .cache
+
+# TS build
+*.tsbuildinfo
