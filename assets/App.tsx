@@ -1,30 +1,35 @@
 import * as React from "react";
 import { Route, Switch } from "react-router";
 import styled from "styled-components";
+import Container from "./components/Container";
 import Header from "./components/Header";
-import Create from "./pages/Create";
 import Home from "./pages/Home";
 import Join from "./pages/Join";
 import Ready from "./pages/Ready";
 
-const Page = styled.div``;
-
-const Container = styled.main`
-  padding: 0 0.5rem;
+const Page = styled.div`
+  color: ${props => props.theme.colours.text};
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    ${props => props.theme.colours.pink},
+    ${props => props.theme.colours.orange}
+  );
 `;
 
 const App = () => (
   <Page>
-    <Header />
+    <Switch>
+      <Route exact path="/" component={Home} />
 
-    <Container>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/create" component={Create} />
-        <Route path="/join" component={Join} />
-        <Route path="/ready" component={Ready} />
-      </Switch>
-    </Container>
+      <>
+        <Header />
+        <Container>
+          <Route path="/join" component={Join} />
+          <Route path="/ready" component={Ready} />
+        </Container>
+      </>
+    </Switch>
   </Page>
 );
 

@@ -8,7 +8,7 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: center;
   height: ${HeaderHeight}px;
-  background-color: ${props => props.theme.colours.secondary};
+  background-color: ${props => props.theme.colours.purple};
   margin-top: 0;
   font-size: 1.5em;
   font-weight: bold;

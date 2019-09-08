@@ -1,12 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import { CtaButton } from "../components/Button";
-import { EmptyLink } from "../components/Link";
+import { ButtonLink } from "../components/Button";
+import Center from "../components/Center";
+import Container from "../components/Container";
+import { Blurb, Title } from "../components/Text";
 
-const Blurb = styled.h2`
-  padding-top: 6rem;
-  text-align: center;
-`;
+const StyledHome = styled.div``;
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -15,17 +14,18 @@ const ButtonContainer = styled.div`
 `;
 
 const Home = () => (
-  <div>
-    <Blurb>A trivia game to play with friends and family.</Blurb>
-    <ButtonContainer>
-      <CtaButton>
-        <EmptyLink to="/join">Join Game</EmptyLink>
-      </CtaButton>
-      <CtaButton>
-        <EmptyLink to="/create">Create Game</EmptyLink>
-      </CtaButton>
-    </ButtonContainer>
-  </div>
+  <StyledHome>
+    <Container>
+      <Center>
+        <Title>Quiztastic !</Title>
+        <Blurb>A trivia game to play with friends and family</Blurb>
+        <ButtonContainer>
+          <ButtonLink to="/join">Join Game</ButtonLink>
+          <ButtonLink to="/ready">Create Game</ButtonLink>
+        </ButtonContainer>
+      </Center>
+    </Container>
+  </StyledHome>
 );
 
 export default Home;

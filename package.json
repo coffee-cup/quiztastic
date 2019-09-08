@@ -1,5 +1,5 @@
 {
-  "repository": {},
+  "private": true,
   "license": "MIT",
   "scripts": {
     "copy": "cp -R ./assets/static/* ./priv/static",

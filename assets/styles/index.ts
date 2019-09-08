@@ -6,19 +6,26 @@ export interface Theme {
   colours: {
     text: Colour;
     bg: Colour;
-    primary: Colour;
-    secondary: Colour;
-    accent: Colour;
+    purple: Colour;
+    pink: Colour;
+    orange: Colour;
+    yellow: Colour;
   };
 }
 
+const sunset = {
+  purple: "#2d3561",
+  pink: "#c05c7e",
+  orange: "#f3826f",
+  yellow: "#ffb961",
+};
+
+// https://colorhunt.co/palette/152688
 export const theme: Theme = {
   colours: {
-    text: "#333",
-    bg: "white",
-    primary: "#5dd9c1",
-    secondary: "darkslateblue",
-    accent: "aqua",
+    text: "white",
+    bg: sunset.pink,
+    ...sunset,
   },
 };
 
