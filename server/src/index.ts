@@ -1,5 +1,6 @@
 import * as Koa from "koa";
 import logger from "./logger";
+import router from "./routes";
 
 const PORT = process.env.PORT || 3000;
 
@@ -18,9 +19,8 @@ app.use(async (ctx, next) => {
   ctx.set("X-Response-Time", `${ms}ms`);
 });
 
-app.use(async ctx => {
-  ctx.body = "Hello World";
-});
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 app.listen(PORT, () => {
   logger.info(`Started server on port ${PORT}`);
