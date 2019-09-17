@@ -39,14 +39,14 @@ export const sizes = {
 
 export const NarrowScreenWidth = sizes.phone;
 
-export const forNarrowScreen = (first, ...interpolations) => css`
+export const forNarrowScreen = (first: any, ...interpolations: any) => css`
   @media only screen ${NarrowScreenWidth != null &&
       css` and (max-width: ${NarrowScreenWidth})`} {
     ${css(first, ...interpolations)}
   }
 `;
 
-export const forWideScreen = (first, ...interpolations) => css`
+export const forWideScreen = (first: any, ...interpolations: any) => css`
   @media only screen ${NarrowScreenWidth != null &&
       css` and (min-width: ${NarrowScreenWidth})`} {
     ${css(first, ...interpolations)}
