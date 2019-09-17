@@ -9,7 +9,12 @@ const app = new Koa();
 app.use(async (ctx, next) => {
   await next();
   const rt = ctx.response.get("X-Response-Time");
-  logger.info(`${ctx.method} ${ctx.url} - ${rt}`);
+
+  if (ctx.response.status !== 200) {
+    logger.error(`${ctx.response.status} - ${ctx.method} ${ctx.url}`);
+  } else {
+    logger.info(`${ctx.method} ${ctx.url} - ${rt}`);
+  }
 });
 
 app.use(async (ctx, next) => {
