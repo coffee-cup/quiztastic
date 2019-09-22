@@ -1,11 +1,11 @@
+import { createBrowserHistory } from "history";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
+import { model } from "./model";
 import { theme } from "./styles";
 import typography from "./styles/typography";
-import { model } from "./model";
-import { createBrowserHistory } from "history";
 import { GameStatus } from "./types";
 
 import "./index.scss";

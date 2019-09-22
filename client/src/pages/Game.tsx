@@ -1,32 +1,19 @@
 import * as React from "react";
+import * as io from "socket.io-client";
 import styled from "styled-components";
+import * as actions from "../actions";
 import Button from "../components/Button";
 import Center from "../components/Center";
+import { FormGroup } from "../components/Form";
 import Input from "../components/Input";
 import { Title } from "../components/Text";
-import { GameStatus, Game as GameModel, Player as PlayerModel } from "../types";
-import * as io from "socket.io-client";
-import { watch, dispatch, state, local } from "../model";
-import * as actions from "../actions";
-
-const StyledGameInfo = styled.div`
-  text-align: left;
-  margin 0 auto;
-
-  .info {
-    font-size: 0.9em;
-  }
-
-  .code {
-    font-size: 2.5em;
-  }
-`;
+import { dispatch, local, state, watch } from "../model";
+import { GameStatus, Player as PlayerModel } from "../types";
 
 const GameInfo = (props: { code: string }) => (
-  <StyledGameInfo>
-    <div className="info">game code</div>
+  <FormGroup label="game code">
     <Title>{props.code}</Title>
-  </StyledGameInfo>
+  </FormGroup>
 );
 
 const StyledPlayer = styled.div<{ ready: boolean }>`
@@ -54,7 +41,7 @@ const Player: React.FC<{ player: PlayerModel }> = ({ player }) => (
 );
 
 const StyledPlayers = styled.div`
-  padding-top: 2rem;
+  padding-top: 1rem;
   text-align: left;
 `;
 
@@ -63,6 +50,8 @@ const Players: React.FC<{ players: PlayerModel[] }> = props => (
     {props.players.map((p, i) => (
       <Player key={i} player={p} />
     ))}
+
+    {props.players.length === 0 && <h4>No players ready</h4>}
   </StyledPlayers>
 );
 
@@ -72,17 +61,51 @@ export interface Props {
 
 const WaitingArea = () => {
   const game = watch(state.game);
+  const playerId = watch(local.uid);
+  const localName = watch(local.name) || "";
+
+  const [name, setName] = React.useState(localName);
 
   if (!game) {
     return null;
   }
 
+  const player = game.players.filter(p => p.id === playerId)[0];
+
   return (
     <div>
       <GameInfo code={game.code} />
-      <Input placeholder="Your name" value={"blah"} />
-      <Button>Ready</Button>
-      <Players players={game.players} />
+
+      <FormGroup label="Your name">
+        {player.ready ? (
+          <Title>{player.name}</Title>
+        ) : (
+          <>
+            <Input
+              value={name}
+              onChange={e => setName(e.target.value)}
+              placeholder="Name"
+            />
+            <Button onClick={() => dispatch(actions.readyPlayer)(name)}>
+              Ready
+            </Button>
+          </>
+        )}
+      </FormGroup>
+
+      {player.ready && player.admin && (
+        <FormGroup>
+          <Button>Start game</Button>
+        </FormGroup>
+      )}
+
+      {player.ready && !player.admin && (
+        <FormGroup>
+          <h4>{"Waiting for game to start... ヾ(￣0￣ )ノ"}</h4>
+        </FormGroup>
+      )}
+
+      <Players players={game.players.filter(p => p.ready)} />
     </div>
   );
 };
@@ -90,6 +113,7 @@ const WaitingArea = () => {
 const Game = (props: Props) => {
   const gameStatus = watch(state.gameStatus);
   const playerId = watch(local.uid);
+  const playerName = watch(local.name);
 
   if (!playerId) {
     return null;
@@ -98,18 +122,9 @@ const Game = (props: Props) => {
   React.useEffect(() => {
     const socket = io.connect("http://localhost:3000");
 
-    socket.on("game", ({ game }: { game: GameModel }) => {
-      dispatch(actions.setGame)(game);
-    });
+    actions.setupSocket(dispatch, socket);
 
-    socket.on("game info", ({ message }: { message: string }) => {
-      dispatch(actions.setError)(message);
-    });
-
-    socket.emit("join game", {
-      code: props.code,
-      id: playerId,
-    });
+    actions.joinGame(props.code, playerId, playerName);
   }, [props.code]);
 
   return (

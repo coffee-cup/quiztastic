@@ -6,7 +6,8 @@
   "scripts": {
     "build": "set -ex; tsc --build",
     "build:watch": "yarn build --watch",
-    "lint": "tslint -p ."
+    "test": "wsrun --serial --exclude-missing test",
+    "lint": "wsrun --serial --exclude-missing lint"
   },
   "workspaces": [
     "client/",

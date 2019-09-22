@@ -1,14 +1,14 @@
-import * as React from "react";
 import { Route, Switch } from "@prodo/route";
+import * as React from "react";
 import styled from "styled-components";
+import * as actions from "./actions";
 import Container from "./components/Container";
 import Header from "./components/Header";
+import { dispatch } from "./model";
+import Create from "./pages/Create";
+import Game from "./pages/Game";
 import Home from "./pages/Home";
 import Join from "./pages/Join";
-import Game from "./pages/Game";
-import Create from "./pages/Create";
-import { dispatch } from "./model";
-import * as actions from "./actions";
 
 const Page = styled.div`
   color: ${props => props.theme.colours.text};

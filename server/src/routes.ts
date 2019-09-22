@@ -1,6 +1,7 @@
 import * as Router from "koa-router";
-import { createGame, randomCode } from "./games";
-import { getGame, saveGame, isCodeAvailable } from "./store";
+import { createGame, createPlayer, randomCode } from "./games";
+import logger from "./logger";
+import { getGame, isCodeAvailable, saveGame } from "./store";
 import { categories, difficulties } from "./trivia";
 import { verifyString } from "./verify";
 
@@ -18,7 +19,15 @@ router.get("/api/game/:code", async ctx => {
 });
 
 router.post("/api/game", async ctx => {
-  const { uid, category, difficulty } = ctx.request.body;
+  const {
+    uid,
+    category,
+    difficulty,
+  }: {
+    uid: string;
+    category: string;
+    difficulty: string;
+  } = ctx.request.body;
 
   if (
     !verifyString(uid) ||
@@ -40,11 +49,16 @@ router.post("/api/game", async ctx => {
   }
 
   if (!foundCode) {
+    logger.error("No code available");
     ctx.throw(500, "No code available");
     return;
   }
 
-  const game = createGame(uid, code, category, difficulty);
+  const admin = createPlayer(uid, true);
+
+  logger.info(`${admin.name} created game ${code}`);
+
+  const game = createGame(admin, code, category, difficulty);
   saveGame(game);
   ctx.body = game;
 });

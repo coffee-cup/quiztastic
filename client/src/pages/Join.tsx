@@ -1,10 +1,10 @@
 import * as React from "react";
+import { redirectGame } from "../actions";
+import Button from "../components/Button";
 import Center from "../components/Center";
 import Input from "../components/Input";
 import { Blurb, Title } from "../components/Text";
 import { dispatch } from "../model";
-import Button from "../components/Button";
-import { redirectGame } from "../actions";
 
 const Join = () => {
   const [code, setCode] = React.useState("");

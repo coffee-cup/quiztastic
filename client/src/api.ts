@@ -1,4 +1,4 @@
-import { Game, CreateGameState } from "./types";
+import { CreateGameState, Game } from "./types";
 
 const baseUrl = "http://localhost:3000/api";
 const apiRoutes = {

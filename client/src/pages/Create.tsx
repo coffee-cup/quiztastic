@@ -1,12 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
+import { redirectGame } from "../actions";
+import * as api from "../api";
+import Button from "../components/Button";
 import Center from "../components/Center";
 import Select from "../components/Select";
 import { Title } from "../components/Text";
-import { local, watch, state, dispatch } from "../model";
-import Button from "../components/Button";
-import { redirectGame } from "../actions";
-import * as api from "../api";
+import { dispatch, local, state, watch } from "../model";
 
 const Group = styled.div`
   display: flex;
@@ -99,7 +99,6 @@ const Create = () => {
       <Title>Create Game</Title>
       <form
         onSubmit={e => {
-          console.log("creating game");
           dispatch(createGame)();
           e.preventDefault();
         }}

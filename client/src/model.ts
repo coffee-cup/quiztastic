@@ -1,8 +1,8 @@
 import { createModel } from "@prodo/core";
 import localPlugin from "@prodo/local";
-import routePlugin from "@prodo/route";
 import loggerPlugin from "@prodo/logger";
-import { GameStatus, Game, CreateGameState } from "./types";
+import routePlugin from "@prodo/route";
+import { CreateGameState, Game, GameStatus } from "./types";
 
 export interface State {
   categories?: string[];
@@ -14,6 +14,7 @@ export interface State {
 
 export interface Local {
   uid: string;
+  name: string;
 }
 
 export const model = createModel<State>()

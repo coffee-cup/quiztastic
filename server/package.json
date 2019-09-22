@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "lint": "tslint -p ."
   },
   "dependencies": {
     "@koa/cors": "^3.0.0",

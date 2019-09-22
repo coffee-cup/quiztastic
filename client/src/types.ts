@@ -3,6 +3,7 @@ export interface Player {
   name: string;
   ready: boolean;
   lives: number;
+  admin: boolean;
 }
 
 export enum GameStatus {

@@ -8,10 +8,9 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   margin: 0.15rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   width: 100%;
   min-width: 16rem;
-  height: 3rem;
   background-color: ${props => props.theme.colours.purple};
   border: none;
   color: white;
@@ -20,6 +19,10 @@ const Button = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 250ms ease-in-out;
+
+  &:disabled {
+    background-color: lightgrey;
+  }
 
   &:active {
     transform: scale(1.1);
