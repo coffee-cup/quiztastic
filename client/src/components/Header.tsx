@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@prodo/route";
 import styled from "styled-components";
 import { HeaderHeight } from "../styles";
 
@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
 
 const Header = () => (
   <StyledHeader>
-    <Link to="/">Quiztastic!</Link>
+    <Link to={{ path: "/" }}>Quiztastic!</Link>
   </StyledHeader>
 );
 

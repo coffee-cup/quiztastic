@@ -21,7 +21,7 @@ const Home = () => (
         <Blurb>A trivia game to play with friends and family</Blurb>
         <ButtonContainer>
           <ButtonLink to="/join">Join Game</ButtonLink>
-          <ButtonLink to="/ready">Create Game</ButtonLink>
+          <ButtonLink to="/create">Create Game</ButtonLink>
         </ButtonContainer>
       </Center>
     </Container>
