@@ -4,7 +4,7 @@ import * as socket from "socket.io";
 import { getGame, saveGame } from "../store";
 import logger from "../logger";
 
-const randomCode = (): string => dogNames.allRandom().toLowerCase();
+export const randomCode = (): string => dogNames.allRandom().toLowerCase();
 
 export const createPlayer = (id: string): Player => {
   return {
@@ -17,12 +17,11 @@ export const createPlayer = (id: string): Player => {
 
 export const createGame = (
   uid: string,
+  code: string,
   category: string,
   difficulty: string,
 ): Game => {
   const admin = createPlayer(uid);
-
-  const code = randomCode();
 
   return {
     code,

@@ -12,3 +12,8 @@ export const saveGame = (game: Game) => {
 export const getGame = (code: string): Game | undefined => {
   return gameCache.get(code);
 };
+
+export const isCodeAvailable = (code: string): boolean => {
+  const game = getGame(code);
+  return game === undefined;
+};

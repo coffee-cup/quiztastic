@@ -1,6 +1,6 @@
 import * as Router from "koa-router";
-import { createGame } from "./games";
-import { getGame, saveGame } from "./store";
+import { createGame, randomCode } from "./games";
+import { getGame, saveGame, isCodeAvailable } from "./store";
 import { categories, difficulties } from "./trivia";
 import { verifyString } from "./verify";
 
@@ -29,7 +29,22 @@ router.post("/api/game", async ctx => {
     return;
   }
 
-  const game = createGame(uid, category, difficulty);
+  let code = randomCode();
+  let foundCode = false;
+  for (let i = 0; i < 1000; i += 1) {
+    if (isCodeAvailable(code)) {
+      foundCode = true;
+      break;
+    }
+    code = randomCode();
+  }
+
+  if (!foundCode) {
+    ctx.throw(500, "No code available");
+    return;
+  }
+
+  const game = createGame(uid, code, category, difficulty);
   saveGame(game);
   ctx.body = game;
 });
