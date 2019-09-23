@@ -17,7 +17,7 @@ const Home = () => (
   <StyledHome>
     <Container>
       <Center>
-        <Title>Quiztastic !</Title>
+        <Title>Quiztastic!</Title>
         <Blurb>A trivia game to play with friends and family</Blurb>
         <ButtonContainer>
           <ButtonLink to="/join">Join Game</ButtonLink>

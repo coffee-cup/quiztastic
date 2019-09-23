@@ -33,8 +33,37 @@ export interface GameOptions {
   startingLives: number;
 }
 
+export interface WaitingState {
+  type: "waiting";
+}
+
+export interface AskingState {
+  type: "asking";
+  question: string;
+  possibleAnswers: string[];
+  correctAnswer: string;
+  playerAnswers: { [id: string]: string };
+}
+
+export interface ResultsState {
+  type: "results";
+  correctPlayers: { [id: string]: boolean };
+}
+
+export interface FinishedState {
+  type: "finished";
+  winnerId: string;
+}
+
+export type GameState =
+  | WaitingState
+  | AskingState
+  | ResultsState
+  | FinishedState;
+
 export interface Game {
   code: string;
   players: { [id: string]: Player };
   options: GameOptions;
+  gameState: GameState;
 }

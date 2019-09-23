@@ -1,26 +1,17 @@
 import * as React from "react";
 import * as io from "socket.io-client";
-import Players from "../components/Players";
 import * as actions from "../actions";
-import Button from "../components/Button";
 import Center from "../components/Center";
-import { FormGroup } from "../components/Form";
-import Input from "../components/Input";
-import { Title } from "../components/Text";
 import { dispatch, local, state, watch } from "../model";
 import { GameStatus } from "../types";
-
-const GameInfo = (props: { code: string }) => (
-  <FormGroup label="game code">
-    <Title>{props.code}</Title>
-  </FormGroup>
-);
+import WaitingRoom from "../components/WaitingRoom";
+import Asking from "../components/Asking";
 
 export interface Props {
   code: string;
 }
 
-const WaitingArea: React.FC = () => {
+const InGame = () => {
   const currentGame = watch(state.currentGame);
 
   if (currentGame == null) {
@@ -28,60 +19,18 @@ const WaitingArea: React.FC = () => {
   }
 
   const game = watch(state.games[currentGame]);
-  const playerId = watch(local.uid);
-  const localName = watch(local.name) || "";
-
-  const [name, setName] = React.useState(localName);
-
-  if (!game || !playerId) {
-    return null;
-  }
-
-  const player = game.players[playerId];
-
-  return (
-    <div>
-      <GameInfo code={game.code} />
-
-      {!player.ready && (
-        <FormGroup label="Your name">
-          <Input
-            value={name}
-            onChange={e => setName(e.target.value)}
-            placeholder="Name"
-          />
-          <Button onClick={() => dispatch(actions.readyPlayer)(name)}>
-            Ready
-          </Button>
-        </FormGroup>
-      )}
-
-      {player.ready && player.admin && (
-        <FormGroup>
-          <Button>Start game</Button>
-        </FormGroup>
-      )}
-
-      {player.ready && !player.admin && (
-        <FormGroup>
-          <h4>{"Waiting for game to start... ヾ(￣0￣ )ノ"}</h4>
-        </FormGroup>
-      )}
-
-      <Players />
-    </div>
-  );
-};
-
-const InGame = () => {
-  const currentGame = watch(state.currentGame);
-  const game = currentGame != null && watch(state.games[currentGame]);
 
   if (game == null) {
     return null;
   }
 
-  return <WaitingArea />;
+  if (game.gameState.type === "waiting") {
+    return <WaitingRoom />;
+  } else if (game.gameState.type === "asking") {
+    return <Asking />;
+  }
+
+  return null;
 };
 
 const Game = (props: Props) => {

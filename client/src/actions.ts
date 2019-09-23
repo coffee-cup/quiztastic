@@ -47,6 +47,13 @@ const getCurrentGame = (state: State): Game | null => {
   return state.currentGame != null ? state.games[state.currentGame] : null;
 };
 
+export const startGame = () => {
+  const game = getCurrentGame(state);
+  if (socket && game) {
+    socket.emit("start game", { code: game.code });
+  }
+};
+
 export const readyPlayer = (name: string) => {
   const game = getCurrentGame(state);
   if (socket && game && local.uid && name !== "") {
