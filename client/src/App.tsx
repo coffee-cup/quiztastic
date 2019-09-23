@@ -9,6 +9,7 @@ import Create from "./pages/Create";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
 import Join from "./pages/Join";
+import NotFound from "./pages/NotFound";
 
 const Page = styled.div`
   color: ${props => props.theme.colours.text};
@@ -33,9 +34,13 @@ const App = () => {
         <>
           <Header />
           <Container>
-            <Route path="/join" component={Join} />
-            <Route path="/create" component={Create} />
-            <Route path="/game/:code" component={Game} />
+            <Switch>
+              <Route path="/join" component={Join} />
+              <Route path="/create" component={Create} />
+              <Route path="/game/:code" component={Game} />
+
+              <Route component={NotFound} />
+            </Switch>
           </Container>
         </>
       </Switch>

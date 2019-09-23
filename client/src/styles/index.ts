@@ -15,8 +15,8 @@ export interface Theme {
 
 const sunset = {
   purple: "#2d3561",
-  pink: "#c05c7e",
-  orange: "#f3826f",
+  pink: "#db2664",
+  orange: "#f0715c",
   yellow: "#ffb961",
 };
 

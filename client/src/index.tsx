@@ -18,17 +18,28 @@ const { Provider } = model.createStore({
   logger: true,
   initState: {
     gameStatus: GameStatus.loading,
+    currentGame: null,
+    games: {},
   },
   route: {
     history,
   },
 });
 
-ReactDOM.render(
-  <ThemeProvider theme={theme}>
+const render = () =>
+  ReactDOM.render(
     <Provider>
-      <App />
-    </Provider>
-  </ThemeProvider>,
-  document.getElementById("root"),
-);
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </Provider>,
+    document.getElementById("root"),
+  );
+
+if (module.hot) {
+  module.hot.accept(() => {
+    render();
+  });
+}
+
+render();

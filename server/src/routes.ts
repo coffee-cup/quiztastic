@@ -2,6 +2,7 @@ import * as Router from "koa-router";
 import { createGame, createPlayer, randomCode } from "./games";
 import logger from "./logger";
 import { getGame, isCodeAvailable, saveGame } from "./store";
+import { GameOptions } from "./types";
 import { categories, difficulties } from "./trivia";
 import { verifyString } from "./verify";
 
@@ -21,19 +22,13 @@ router.get("/api/game/:code", async ctx => {
 router.post("/api/game", async ctx => {
   const {
     uid,
-    category,
-    difficulty,
+    options,
   }: {
     uid: string;
-    category: string;
-    difficulty: string;
+    options: GameOptions;
   } = ctx.request.body;
 
-  if (
-    !verifyString(uid) ||
-    !verifyString(category) ||
-    !verifyString(difficulty)
-  ) {
+  if (!verifyString(uid)) {
     ctx.throw(400, "Bad input");
     return;
   }
@@ -54,11 +49,11 @@ router.post("/api/game", async ctx => {
     return;
   }
 
-  const admin = createPlayer(uid, true);
+  const admin = createPlayer(uid, options.startingLives, true);
 
   logger.info(`${admin.name} created game ${code}`);
 
-  const game = createGame(admin, code, category, difficulty);
+  const game = createGame(admin, code, options);
   saveGame(game);
   ctx.body = game;
 });

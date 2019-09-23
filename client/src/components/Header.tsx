@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
 
 const Header = () => (
   <StyledHeader>
-    <Link to={{ path: "/" }}>Quiztastic!</Link>
+    <Link to="/">Quiztastic!</Link>
   </StyledHeader>
 );
 

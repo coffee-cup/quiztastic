@@ -7,6 +7,7 @@ import Center from "../components/Center";
 import Select from "../components/Select";
 import { Title } from "../components/Text";
 import { dispatch, local, state, watch } from "../model";
+import { GameOptions } from "../types";
 
 const Group = styled.div`
   display: flex;
@@ -21,48 +22,50 @@ const Label = styled.h3`
 `;
 
 const startCreateGame = async () => {
-  const createGameState = {
-    selectedCategory: "",
-    selectedDifficulty: "",
+  const gameOptions: GameOptions = {
+    category: "",
+    difficulty: "",
+    startingLives: 3,
   };
 
   state.categories = await api.getCategories();
-  createGameState.selectedCategory = state.categories[0];
+  gameOptions.category = state.categories[0];
 
   state.difficulties = await api.getDifficulties();
-  createGameState.selectedDifficulty = state.difficulties[0];
+  gameOptions.difficulty = state.difficulties[0];
 
-  state.createGameState = createGameState;
+  state.createGameOptions = gameOptions;
 };
 
 const selectCategory = (category: string) => {
-  state.createGameState!.selectedCategory = category;
+  state.createGameOptions!.category = category;
 };
 
 const selectDifficulty = (difficulty: string) => {
-  state.createGameState!.selectedDifficulty = difficulty;
+  state.createGameOptions!.difficulty = difficulty;
+};
+
+const selectStartingLives = (lives: number) => {
+  state.createGameOptions!.startingLives = lives;
 };
 
 const createGame = async () => {
-  const createGameState = state.createGameState;
+  const createGameOptions = state.createGameOptions;
 
-  if (createGameState == null || local.uid == null) {
+  if (createGameOptions == null || local.uid == null) {
     return;
   }
 
-  const game = await api.createGame(local.uid, {
-    selectedCategory: createGameState.selectedCategory,
-    selectedDifficulty: createGameState.selectedDifficulty,
-  });
+  const game = await api.createGame(local.uid, createGameOptions);
 
   dispatch(redirectGame)(game.code);
 };
 
 const SelectGroup: React.FC<{
   name: string;
-  options?: string[];
-  value: string;
-  onChange: (value: string) => void;
+  options?: any[];
+  value: any;
+  onChange: (value: any) => void;
 }> = ({ name, options, value, onChange }) =>
   options != null ? (
     <Group>
@@ -84,7 +87,7 @@ const SelectGroup: React.FC<{
 const Create = () => {
   const categories = watch(state.categories);
   const difficulties = watch(state.difficulties);
-  const createGameState = watch(state.createGameState);
+  const createGameState = watch(state.createGameOptions);
 
   React.useEffect(() => {
     dispatch(startCreateGame)();
@@ -104,17 +107,24 @@ const Create = () => {
         }}
       >
         <SelectGroup
-          value={createGameState.selectedCategory}
+          value={createGameState.category}
           onChange={dispatch(selectCategory)}
           name="Category"
           options={categories}
         />
 
         <SelectGroup
-          value={createGameState.selectedDifficulty}
+          value={createGameState.difficulty}
           onChange={dispatch(selectDifficulty)}
           name="Difficulty"
           options={difficulties}
+        />
+
+        <SelectGroup
+          value={createGameState.startingLives}
+          onChange={dispatch(selectStartingLives)}
+          name="Starting Lives"
+          options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
         />
 
         <Button type="submit">Create</Button>

@@ -1,7 +1,7 @@
 import { push } from "@prodo/route";
 import uuid from "uuid/v4";
 import { dispatch, local, state } from "./model";
-import { Game, GameStatus } from "./types";
+import { State, Game, GameStatus } from "./types";
 
 let socket: SocketIOClient.Socket | null = null;
 
@@ -34,20 +34,27 @@ export const ensurePlayerUid = () => {
 };
 
 export const redirectHome = () => {
+  state.currentGame = null;
   dispatch(push)("/");
 };
 
 export const redirectGame = (code: string) => {
+  state.currentGame = code;
   dispatch(push)(`/game/${code}`);
 };
 
+const getCurrentGame = (state: State): Game | null => {
+  return state.currentGame != null ? state.games[state.currentGame] : null;
+};
+
 export const readyPlayer = (name: string) => {
-  if (socket && state.game && local.uid && name !== "") {
+  const game = getCurrentGame(state);
+  if (socket && game && local.uid && name !== "") {
     local.name = name;
 
     socket.emit("ready player", {
       id: local.uid,
-      code: state.game.code,
+      code: game.code,
       name,
     });
   }
@@ -65,7 +72,8 @@ export const joinGame = (code: string, id: string, name?: string) => {
 
 export const setGame = (game: Game) => {
   state.gameStatus = GameStatus.found;
-  state.game = game;
+  state.currentGame = game.code;
+  state.games[game.code] = game;
 };
 
 export const setError = (message: string) => {

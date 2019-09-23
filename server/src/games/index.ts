@@ -2,15 +2,19 @@ import * as dogNames from "dog-names";
 import * as socket from "socket.io";
 import logger from "../logger";
 import { getGame, saveGame } from "../store";
-import { Game, Player } from "../types";
+import { GameOptions, Game, Player } from "../types";
 
 export const randomCode = (): string => dogNames.allRandom().toLowerCase();
 
-export const createPlayer = (id: string, admin = false): Player => {
+export const createPlayer = (
+  id: string,
+  lives: number,
+  admin = false,
+): Player => {
   return {
     id,
     name: "",
-    lives: 3,
+    lives,
     ready: false,
     admin,
   };
@@ -19,24 +23,17 @@ export const createPlayer = (id: string, admin = false): Player => {
 export const createGame = (
   admin: Player,
   code: string,
-  category: string,
-  difficulty: string,
+  options: GameOptions,
 ): Game => {
   return {
     code,
     admin: admin.id,
     joinable: true,
-    players: [admin],
+    players: { [admin.id]: admin },
     startDate: Date.now(),
-    options: {
-      category,
-      difficulty,
-    },
+    options,
   };
 };
-
-const getPlayer = (game: Game, playerId: string): Player | undefined =>
-  game.players.filter(p => p.id === playerId)[0];
 
 export const setupSocketRoutes = (io: socket.Server) => {
   io.on("connection", socket => {
@@ -55,10 +52,10 @@ export const setupSocketRoutes = (io: socket.Server) => {
         return;
       }
 
-      let player = getPlayer(game, id);
+      let player = game.players[id];
       if (player == null) {
-        player = createPlayer(id);
-        game.players.push(player);
+        player = createPlayer(id, game.options.startingLives);
+        game.players[player.id] = player;
       }
 
       logger.info(`${player.name} joined gamed ${code}`);
@@ -78,19 +75,14 @@ export const setupSocketRoutes = (io: socket.Server) => {
         return;
       }
 
-      if (!getPlayer(game, id)) {
+      const player = game.players[id];
+      if (!player) {
         logger.error(`player not in game ${code}`);
         return;
       }
 
-      game.players = game.players.map(p => {
-        if (p.id === id) {
-          p.name = name;
-          p.ready = true;
-        }
-
-        return p;
-      });
+      player.name = name;
+      player.ready = true;
 
       logger.info(`${name} ready in game ${code}`);
       saveGame(game);

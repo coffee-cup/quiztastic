@@ -1,4 +1,4 @@
-import { CreateGameState, Game } from "./types";
+import { GameOptions, Game } from "./types";
 
 const baseUrl = "http://localhost:3000/api";
 const apiRoutes = {
@@ -36,14 +36,10 @@ const post = (path: string, body: any): Promise<any> =>
     body: JSON.stringify(body),
   }).then(handleJson);
 
-export const createGame = (
-  uid: string,
-  options: CreateGameState,
-): Promise<Game> =>
+export const createGame = (uid: string, options: GameOptions): Promise<Game> =>
   post(apiUrl(apiRoutes.game()), {
     uid,
-    category: options.selectedCategory,
-    difficulty: options.selectedDifficulty,
+    options,
   });
 
 export const getCategories = (): Promise<string[]> =>

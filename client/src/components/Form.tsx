@@ -12,7 +12,6 @@ export const Label = styled.span`
   display: block;
   margin-bottom: 0.25rem;
   font-size: 1em;
-  font-weight: bold;
   text-align: left;
 `;
 

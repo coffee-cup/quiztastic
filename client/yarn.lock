@@ -822,7 +822,7 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.4.0":
+"@babel/runtime@^7.1.2":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.0.tgz#4fc1d642a9fd0299754e8b5de62c631cf5568205"
   integrity sha512-89eSBLJsxNxOERC0Op4vd+0Bqm6wRMqMbFtV3i0/fbaWw/mJ8Q3eBvgX0G4SyrOOLCtbu98HspF8o09MRT+KzQ==
@@ -971,37 +971,37 @@
     "@parcel/utils" "^1.11.0"
     physical-cpu-count "^2.0.0"
 
-"@prodo/babel-plugin@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@prodo/babel-plugin/-/babel-plugin-0.0.6.tgz#426fed0afa0111368ca2a6361490b6fc9f989fd1"
-  integrity sha512-l0/H2Flxlcqdjqdau7NlyYb6SXg93bKZVtI+Xe5dns8vRjY+jmq0LfWTh3CtftRWZVz8uLhlKRNs3GZV0YrdvQ==
+"@prodo/babel-plugin@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@prodo/babel-plugin/-/babel-plugin-0.0.7.tgz#5e6c2cf871c0459bbd2372f2816c27a7e361386a"
+  integrity sha512-RoCYDBNyuiUHNL6l9Epk8WN/Q/OBiZfdT5yawSY5w1SKVWxLe6wf+UIkjSU4LDYQHgXKK0pq/klMNPoaqcf7Jw==
   dependencies:
     "@babel/core" "^7.5.5"
     "@babel/types" "^7.5.5"
 
-"@prodo/core@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@prodo/core/-/core-0.0.6.tgz#488965ce742525254c4aa8b2cdc03c83b59dc5bd"
-  integrity sha512-q6MdcFFgvWCvlAhedA8XT7ql4i7B9ryt1J3UYqAmyVyWBVf4Yu3f/Mo9G748KBD85S33IAxP59QBcdFJORiv7w==
+"@prodo/core@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@prodo/core/-/core-0.0.7.tgz#f40e43420a25995bf6a19dd7a1c22bb9af9fd192"
+  integrity sha512-LTpy51M3PGZG6q7JNLtTeoMyzyTngKR1hOSsl3xfZtUxf6/Lp2knttfVkoFwzSV59Eu7eXpn9jKWPz8yFFbcgQ==
   dependencies:
     immer "^3.2.0"
     react "^16.9.0"
     react-dom "^16.9.0"
 
-"@prodo/local@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@prodo/local/-/local-0.0.6.tgz#32242783fd6697f809ec5455ba363efa18b2a18c"
-  integrity sha512-h9bC09XJPRZn9N6epk+GOd+JG0pJJO2eLDYZIkK5d0anZk86U7DQhW2VHsFzhk2SwnAdHFVokh3gGI85LcqHDw==
+"@prodo/local@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@prodo/local/-/local-0.0.7.tgz#bd7fb25bafc772e060fd2f468b6d683555c39296"
+  integrity sha512-zKVSq67Vc5X5l0F+8/ZV/YWV+5Pm/kgFNXv63kJYAyH5mCc1VlPdu3MYo9BiSIQDaTqH0Hkiu33qiXBLh0uHPA==
 
-"@prodo/logger@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@prodo/logger/-/logger-0.0.6.tgz#7f1b03db382288ee0761d952d740ba118c270537"
-  integrity sha512-rSL6ohWNTY6l7oFwMAia5dCWz9pPaMaIsWntcW3XyHQh2Vbixfnyu1tRS7iinBqTXoB2KIgupxyqLxxF7TJGoA==
+"@prodo/logger@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@prodo/logger/-/logger-0.0.7.tgz#ad8efd923674bca2ae345da05940f59d8d6eecf2"
+  integrity sha512-n/8ijs04mjFFvjpvuHnC7qATLkPDSL3LUz3rs+nPmlIafhoRaNkRu3DbdCRRKV6/3Oixk/MLtIE/DOfKJa3IgA==
 
-"@prodo/route@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@prodo/route/-/route-0.0.6.tgz#88d056115357e324a04d2dcf895ff592ef95e190"
-  integrity sha512-DEjIEuWV80COYUMjNOFbSbWpehxJ70qCl0bBs5I/GoHFbOz7AhxM2f+w2JX1OscPsAI9RQiiZySgGTmkmYJQPA==
+"@prodo/route@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@prodo/route/-/route-0.0.7.tgz#b23c1e2fced34d9bbe31c3ab0d0eaeb1fb8173be"
+  integrity sha512-saovhRuexJqCShs3NWjQJ7INvzs1nFrSBEMT1S5cS21wavX6uMv8jNyS8sivga9MBE4tJ8l+HT7oaOLjeI6Omg==
   dependencies:
     history "^4.9.0"
     path-to-regexp "^3.1.0"
@@ -1016,6 +1016,11 @@
   version "12.7.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.5.tgz#e19436e7f8e9b4601005d73673b6dc4784ffcc2f"
   integrity sha512-9fq4jZVhPNW8r+UYKnxF1e2HkDWOWKM5bC2/7c9wPV835I0aOrVbS/Hw/pWPk2uKrNXQqg9Z959Kz+IYDd5p3w==
+
+"@types/parcel-env@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@types/parcel-env/-/parcel-env-0.0.0.tgz#c8ed2c06cd70c9cb89d50bbb1688404fc2a93f33"
+  integrity sha512-GcmAgBcg/SG5Hy3MVvcTRXf4PUIxQoNUMCjTvG6DSWAfoFwd1FKG0HxVZqHgRE4JuusR6DTrNetKi2WliIiY/g==
 
 "@types/prop-types@*":
   version "15.7.2"
@@ -2884,11 +2889,6 @@ gray-percentage@^2.0.0:
   resolved "https://registry.yarnpkg.com/gray-percentage/-/gray-percentage-2.0.0.tgz#b72a274d1b1379104a0050b63b207dc53fe56f99"
   integrity sha1-tyonTRsTeRBKAFC2OyB9xT/lb5k=
 
-gud@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/gud/-/gud-1.0.0.tgz#a489581b17e6a70beca9abe3ae57de7a499852c0"
-  integrity sha512-zGEOVKFM5sVPPrYs7J5/hYEw2Pof8KCyOwyhG8sAF26mCAeUFAcYPu1mwB7hhpIP29zOIBaDqwuHdLp0jvZXjw==
-
 har-schema@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-2.0.0.tgz#a94c2224ebcac04782a0d9035521f24735b7ec92"
@@ -3020,13 +3020,6 @@ hmac-drbg@^1.0.0:
     hash.js "^1.0.3"
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
-
-hoist-non-react-statics@^3.1.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
-  integrity sha512-0XsbTXxgiaCDYDIWFcwkmerZPSwywfUqYmwT4jzewKTQSWoE6FCMoUVOeBJWK3E/CrWbxRG3m5GzY4lnIwGRBA==
-  dependencies:
-    react-is "^16.7.0"
 
 hsl-regex@^1.0.0:
   version "1.0.0"
@@ -3661,7 +3654,7 @@ log-symbols@^2.2.0:
   dependencies:
     chalk "^2.0.1"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -3786,15 +3779,6 @@ mimic-fn@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
   integrity sha512-jf84uxzwiuiIVKiOLpfYk7N46TSy8ubTonmneY9vrpHNAnp0QBt2BxWV9dO3/j+BoVAb+a5G6YDPW3M5HOdMWQ==
-
-mini-create-react-context@^0.3.0:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/mini-create-react-context/-/mini-create-react-context-0.3.2.tgz#79fc598f283dd623da8e088b05db8cddab250189"
-  integrity sha512-2v+OeetEyliMt5VHMXsBhABoJ0/M4RCe7fatd/fBy6SMiKazUSEt3gxxypfnk2SHMkdBYvorHRoQxuGoiwbzAw==
-  dependencies:
-    "@babel/runtime" "^7.4.0"
-    gud "^1.0.0"
-    tiny-warning "^1.0.2"
 
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
@@ -4351,13 +4335,6 @@ path-parse@^1.0.6:
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
   integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
 
-path-to-regexp@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
-  integrity sha1-Wf3g9DW62suhA6hOnTvGTpa5k30=
-  dependencies:
-    isarray "0.0.1"
-
 path-to-regexp@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-3.1.0.tgz#f45a9cc4dc6331ae8f131e0ce4fde8607f802367"
@@ -4903,39 +4880,10 @@ react-dom@^16.9.0:
     prop-types "^15.6.2"
     scheduler "^0.15.0"
 
-react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
+react-is@^16.6.0, react-is@^16.8.1:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
   integrity sha512-tJBzzzIgnnRfEm046qRcURvwQnZVXmuCbscxUO5RWrGTXpon2d4c8mI0D8WE6ydVIm29JiLB6+RslkIvym9Rjw==
-
-react-router-dom@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.0.1.tgz#ee66f4a5d18b6089c361958e443489d6bab714be"
-  integrity sha512-zaVHSy7NN0G91/Bz9GD4owex5+eop+KvgbxXsP/O+iW1/Ln+BrJ8QiIR5a6xNPtrdTvLkxqlDClx13QO1uB8CA==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-    history "^4.9.0"
-    loose-envify "^1.3.1"
-    prop-types "^15.6.2"
-    react-router "5.0.1"
-    tiny-invariant "^1.0.2"
-    tiny-warning "^1.0.0"
-
-react-router@5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-5.0.1.tgz#04ee77df1d1ab6cb8939f9f01ad5702dbadb8b0f"
-  integrity sha512-EM7suCPNKb1NxcTZ2LEOWFtQBQRQXecLxVpdsP4DW4PbbqYWeRiLyV/Tt1SdCrvT2jcyXAXmVTmzvSzrPR63Bg==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-    history "^4.9.0"
-    hoist-non-react-statics "^3.1.0"
-    loose-envify "^1.3.1"
-    mini-create-react-context "^0.3.0"
-    path-to-regexp "^1.7.0"
-    prop-types "^15.6.2"
-    react-is "^16.6.0"
-    tiny-invariant "^1.0.2"
-    tiny-warning "^1.0.0"
 
 react@>=15, react@^16.9.0:
   version "16.9.0"
@@ -5767,7 +5715,7 @@ tiny-invariant@^1.0.2:
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.6.tgz#b3f9b38835e36a41c843a3b0907a5a7b3755de73"
   integrity sha512-FOyLWWVjG+aC0UqG76V53yAWdXfH8bO6FNmyZOuUrzDzK8DI3/JRY25UD7+g49JWM1LXwymsKERB+DzI0dTEQA==
 
-tiny-warning@^1.0.0, tiny-warning@^1.0.2:
+tiny-warning@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==

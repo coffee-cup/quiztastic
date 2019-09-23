@@ -6,14 +6,17 @@ export interface Player {
   admin: boolean;
 }
 
+export interface GameOptions {
+  category: string;
+  difficulty: string;
+  startingLives: number;
+}
+
 export interface Game {
   code: string;
   admin: string;
   joinable: boolean;
-  players: Player[];
+  players: { [id: string]: Player };
   startDate: number;
-  options: {
-    category: string;
-    difficulty: string;
-  };
+  options: GameOptions;
 }
