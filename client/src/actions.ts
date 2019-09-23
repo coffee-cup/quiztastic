@@ -13,7 +13,7 @@ export const setupSocket = (
 
   if (socket) {
     socket.on("disconnect", () => {
-      dispatch(redirectHome)();
+      // dispatch(redirectHome)();
       socket = null;
     });
 
@@ -47,6 +47,19 @@ const getCurrentGame = (state: State): Game | null => {
   return state.currentGame != null ? state.games[state.currentGame] : null;
 };
 
+export const readyPlayer = (name: string) => {
+  const game = getCurrentGame(state);
+  if (socket && game && local.uid && name !== "") {
+    local.name = name;
+
+    socket.emit("ready player", {
+      playerId: local.uid,
+      code: game.code,
+      name,
+    });
+  }
+};
+
 export const startGame = () => {
   const game = getCurrentGame(state);
   if (socket && game) {
@@ -54,24 +67,22 @@ export const startGame = () => {
   }
 };
 
-export const readyPlayer = (name: string) => {
+export const answerQuestion = (answer: string) => {
   const game = getCurrentGame(state);
-  if (socket && game && local.uid && name !== "") {
-    local.name = name;
-
-    socket.emit("ready player", {
-      id: local.uid,
+  if (socket && game) {
+    socket.emit("answer question", {
       code: game.code,
-      name,
+      playerId: local.uid,
+      answer,
     });
   }
 };
 
-export const joinGame = (code: string, id: string, name?: string) => {
+export const joinGame = (code: string, name?: string) => {
   if (socket) {
     socket.emit("join game", {
       code,
-      id,
+      playerId: local.uid,
       name,
     });
   }

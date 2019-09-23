@@ -55,6 +55,7 @@ router.post("/api/game", async ctx => {
 
   const game = createGame(admin, code, options);
   saveGame(game);
+
   ctx.body = game;
 });
 

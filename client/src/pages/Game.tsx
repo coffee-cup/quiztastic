@@ -6,6 +6,7 @@ import { dispatch, local, state, watch } from "../model";
 import { GameStatus } from "../types";
 import WaitingRoom from "../components/WaitingRoom";
 import Asking from "../components/Asking";
+import Results from "../components/Results";
 
 export interface Props {
   code: string;
@@ -28,6 +29,8 @@ const InGame = () => {
     return <WaitingRoom />;
   } else if (game.gameState.type === "asking") {
     return <Asking />;
+  } else if (game.gameState.type === "results") {
+    return <Results />;
   }
 
   return null;
@@ -46,8 +49,7 @@ const Game = (props: Props) => {
     const socket = io.connect("http://localhost:3000");
 
     actions.setupSocket(dispatch, socket);
-
-    actions.joinGame(props.code, playerId, playerName);
+    dispatch(actions.joinGame)(props.code, playerName);
   }, [props.code]);
 
   return (

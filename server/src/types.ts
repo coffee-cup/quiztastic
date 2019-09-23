@@ -26,6 +26,7 @@ export interface AskingState {
 
 export interface ResultsState {
   type: "results";
+  answer: string;
   correctPlayers: { [id: string]: boolean };
 }
 

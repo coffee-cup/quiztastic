@@ -2,7 +2,7 @@ import * as dogNames from "dog-names";
 import * as socket from "socket.io";
 import logger from "../logger";
 import * as store from "../store";
-import { GameOptions, Game, Player } from "../types";
+import { AskingState, GameOptions, Game, Player } from "../types";
 
 export const randomCode = (): string => dogNames.allRandom().toLowerCase();
 
@@ -45,13 +45,16 @@ export const setupSocketRoutes = (io: socket.Server) => {
       io.to(game.code).emit("game", { game });
     };
 
+    const gameDoesNotExist = (event: string, code: string) => {
+      logger.warn(`${event} of game [${code}] that does not exist`);
+      socket.emit("game info", { message: "game not found" });
+    };
+
     const joinGame = (code: string, id: string) => {
       const game = store.getGame(code);
 
       if (!game) {
-        logger.warn(`Join of invalid game ${code}`);
-        socket.emit("game info", { message: "game not found" });
-        return;
+        return gameDoesNotExist("join", code);
       }
 
       if (!game.joinable) {
@@ -72,16 +75,14 @@ export const setupSocketRoutes = (io: socket.Server) => {
       saveGame(game);
     };
 
-    const readyPlayer = (code: string, id: string, name: string) => {
+    const readyPlayer = (code: string, playerId: string, name: string) => {
       const game = store.getGame(code);
 
       if (!game) {
-        logger.error(`Ready of invalid game ${code}`);
-        socket.emit("game info", { message: "game not found" });
-        return;
+        return gameDoesNotExist("ready", code);
       }
 
-      const player = game.players[id];
+      const player = game.players[playerId];
       if (!player) {
         logger.error(`player not in game ${code}`);
         return;
@@ -100,9 +101,7 @@ export const setupSocketRoutes = (io: socket.Server) => {
       const game = store.getGame(code);
 
       if (!game) {
-        logger.error(`start of invalid game ${code}`);
-        socket.emit("game info", { message: "game not found" });
-        return;
+        return gameDoesNotExist("start", code);
       }
 
       game.gameState = {
@@ -118,19 +117,95 @@ export const setupSocketRoutes = (io: socket.Server) => {
       saveGame(game);
     };
 
-    socket.on("join game", ({ code, id }: { code: string; id: string }) => {
-      joinGame(code, id);
-    });
+    const checkIfAllAnswered = (game: Game): boolean => {
+      const askingState = game.gameState as AskingState;
+      const allAnswered = Object.values(game.players).reduce(
+        (acc, player) => acc && askingState.playerAnswers[player.id] != null,
+        true,
+      );
+
+      return allAnswered;
+    };
+
+    const answerQuestion = (code: string, playerId: string, answer: string) => {
+      const game = store.getGame(code);
+
+      if (!game) {
+        return gameDoesNotExist("answer", code);
+      }
+
+      if (game.gameState.type !== "asking") {
+        return;
+      }
+
+      const state = game.gameState;
+      state.playerAnswers[playerId] = answer;
+
+      if (checkIfAllAnswered(game)) {
+        logger.info("Game all answered!");
+
+        const correctPlayers: { [id: string]: boolean } = {};
+        for (const player of Object.values(game.players)) {
+          const playerAnswer = state.playerAnswers[player.id];
+          const answerCorrect =
+            playerAnswer != null && playerAnswer === state.correctAnswer;
+
+          if (!answerCorrect) {
+            game.players[player.id].lives -= 1;
+          }
+
+          correctPlayers[player.id] = answerCorrect;
+        }
+
+        game.gameState = {
+          type: "results",
+          answer: state.correctAnswer,
+          correctPlayers,
+        };
+
+        saveGame(game);
+      }
+    };
+
+    socket.on(
+      "join game",
+      ({ code, playerId }: { code: string; playerId: string }) => {
+        joinGame(code, playerId);
+      },
+    );
 
     socket.on(
       "ready player",
-      ({ code, id, name }: { code: string; id: string; name: string }) => {
-        readyPlayer(code, id, name);
+      ({
+        code,
+        playerId,
+        name,
+      }: {
+        code: string;
+        playerId: string;
+        name: string;
+      }) => {
+        readyPlayer(code, playerId, name);
       },
     );
 
     socket.on("start game", ({ code }: { code: string }) => {
       startGame(code);
     });
+
+    socket.on(
+      "answer question",
+      ({
+        code,
+        playerId,
+        answer,
+      }: {
+        code: string;
+        playerId: string;
+        answer: string;
+      }) => {
+        answerQuestion(code, playerId, answer);
+      },
+    );
   });
 };

@@ -6,6 +6,7 @@ import * as socket from "socket.io";
 import { setupSocketRoutes } from "./games";
 import logger from "./logger";
 import router from "./routes";
+import * as store from "./store";
 
 const PORT = process.env.PORT || 3000;
 
@@ -50,6 +51,31 @@ app.use(router.allowedMethods());
 
 const server = http.createServer(app.callback());
 const io = socket(server);
+
+const uid = "d93bcfcb-e752-4de3-88a7-9e7f262d5b37";
+store.saveGame({
+  code: "hello",
+  admin: uid,
+  joinable: true,
+  startDate: Date.now(),
+  players: {
+    [uid]: {
+      id: uid,
+      name: "Firefox",
+      admin: true,
+      lives: 3,
+      ready: true,
+    },
+  },
+  gameState: {
+    type: "waiting",
+  },
+  options: {
+    category: "All",
+    difficulty: "All",
+    startingLives: 3,
+  },
+});
 
 setupSocketRoutes(io);
 
