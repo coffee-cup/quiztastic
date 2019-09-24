@@ -1,8 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
 import Players from "./Players";
-import { state, watch } from "../model";
+import { dispatch, state, watch } from "../model";
 import { Blurb } from "./Text";
+import Button from "./Button";
+import * as actions from "../actions";
 
 const Answer = styled.span`
   display: block;
@@ -24,6 +26,8 @@ const Results = () => {
       <Blurb>
         The answer was <Answer>{game.gameState.answer}</Answer>
       </Blurb>
+
+      <Button onClick={dispatch(actions.advanceRound)}>Next Question</Button>
 
       <Players />
     </>

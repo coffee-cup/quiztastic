@@ -52,7 +52,7 @@ app.use(router.allowedMethods());
 const server = http.createServer(app.callback());
 const io = socket(server);
 
-const uid = "d93bcfcb-e752-4de3-88a7-9e7f262d5b37";
+const uid = "4997356b-b337-4703-8ce8-fcd161d65ef1";
 store.saveGame({
   code: "hello",
   admin: uid,

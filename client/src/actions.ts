@@ -78,6 +78,15 @@ export const answerQuestion = (answer: string) => {
   }
 };
 
+export const advanceRound = () => {
+  const game = getCurrentGame(state);
+  if (socket && game) {
+    socket.emit("advance round", {
+      code: game.code,
+    });
+  }
+};
+
 export const joinGame = (code: string, name?: string) => {
   if (socket) {
     socket.emit("join game", {

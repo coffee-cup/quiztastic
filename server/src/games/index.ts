@@ -69,7 +69,7 @@ export const setupSocketRoutes = (io: socket.Server) => {
         game.players[player.id] = player;
       }
 
-      logger.info(`${player.name} joined gamed ${code}`);
+      logger.info(`user joined gamed ${code}`);
       socket.join(code);
 
       saveGame(game);
@@ -97,13 +97,7 @@ export const setupSocketRoutes = (io: socket.Server) => {
       io.to(code).emit("game", { game });
     };
 
-    const startGame = (code: string) => {
-      const game = store.getGame(code);
-
-      if (!game) {
-        return gameDoesNotExist("start", code);
-      }
-
+    const nextQuestion = (game: Game) => {
       game.gameState = {
         type: "asking",
         question: "How are you doing?",
@@ -112,9 +106,18 @@ export const setupSocketRoutes = (io: socket.Server) => {
         playerAnswers: {},
       };
 
-      logger.info(`Started game ${code}`);
-
       saveGame(game);
+    };
+
+    const startGame = (code: string) => {
+      const game = store.getGame(code);
+
+      if (!game) {
+        return gameDoesNotExist("start", code);
+      }
+
+      nextQuestion(game);
+      logger.info(`Started game ${code}`);
     };
 
     const checkIfAllAnswered = (game: Game): boolean => {
@@ -141,6 +144,8 @@ export const setupSocketRoutes = (io: socket.Server) => {
       const state = game.gameState;
       state.playerAnswers[playerId] = answer;
 
+      logger.info(`${game.players[playerId].name} answer in game ${code}`);
+
       if (checkIfAllAnswered(game)) {
         logger.info("Game all answered!");
 
@@ -162,9 +167,20 @@ export const setupSocketRoutes = (io: socket.Server) => {
           answer: state.correctAnswer,
           correctPlayers,
         };
-
-        saveGame(game);
       }
+
+      saveGame(game);
+    };
+
+    const advanceRound = (code: string) => {
+      const game = store.getGame(code);
+
+      if (!game) {
+        return gameDoesNotExist("next question", code);
+      }
+
+      nextQuestion(game);
+      logger.info(`next question in ${code}`);
     };
 
     socket.on(
@@ -191,6 +207,10 @@ export const setupSocketRoutes = (io: socket.Server) => {
 
     socket.on("start game", ({ code }: { code: string }) => {
       startGame(code);
+    });
+
+    socket.on("advance round", ({ code }: { code: string }) => {
+      advanceRound(code);
     });
 
     socket.on(

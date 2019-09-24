@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { EmptyLink } from "./Link";
 
-const Button = styled.button`
+const Button = styled.button<{ selected?: boolean }>`
   appearance: none;
   display: flex;
   align-items: center;
@@ -11,7 +11,8 @@ const Button = styled.button`
   padding: 0.5rem 1rem;
   width: 100%;
   min-width: 16rem;
-  background-color: ${props => props.theme.colours.purple};
+  background-color: ${props =>
+    props.selected ? props.theme.colours.yellow : props.theme.colours.purple};
   border: none;
   color: white;
   border-radius: 2px;
@@ -33,7 +34,7 @@ export default Button;
 
 const AnyButton = Button as any;
 export const ButtonLink: React.FC<{ to: string }> = props => (
-  <AnyButton as={EmptyLink} to={props.to}>
+  <AnyButton as={EmptyLink} to={props.to} {...props}>
     {props.children}
   </AnyButton>
 );
