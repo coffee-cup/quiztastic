@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import Players from "./Players";
-import { dispatch, state, watch } from "../model";
+import { local, dispatch, state, watch } from "../model";
 import { Blurb } from "./Text";
 import Button from "./Button";
 import * as actions from "../actions";
@@ -16,18 +16,24 @@ const Answer = styled.span`
 const Results = () => {
   const currentGame = watch(state.currentGame)!;
   const game = watch(state.games[currentGame])!;
+  const playerId = watch(local.uid)!;
 
   if (game.gameState.type !== "results") {
     return null;
   }
 
+  const isAdmin = game.admin === playerId;
+
   return (
     <>
       <Blurb>
-        The answer was <Answer>{game.gameState.answer}</Answer>
+        The answer was{" "}
+        <Answer dangerouslySetInnerHTML={{ __html: game.gameState.answer }} />
       </Blurb>
 
-      <Button onClick={dispatch(actions.advanceRound)}>Next Question</Button>
+      {isAdmin && (
+        <Button onClick={dispatch(actions.advanceRound)}>Next Question</Button>
+      )}
 
       <Players />
     </>

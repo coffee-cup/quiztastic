@@ -51,7 +51,7 @@ router.post("/api/game", async ctx => {
 
   const admin = createPlayer(uid, options.startingLives, true);
 
-  logger.info(`${admin.name} created game ${code}`);
+  logger.info(`created game ${code}`);
 
   const game = createGame(admin, code, options);
   saveGame(game);

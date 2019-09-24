@@ -1,9 +1,16 @@
 import * as React from "react";
+import styled from "styled-components";
 import { local, dispatch, state, watch } from "../model";
-import { Blurb } from "./Text";
 import Button from "./Button";
+import { Title } from "./Text";
 import * as actions from "../actions";
 import Players from "./Players";
+
+const Question = styled.p`
+  margin-top: 0;
+  font-size: 1.2em;
+  text-align: left;
+`;
 
 const Asking = () => {
   const currentGame = watch(state.currentGame)!;
@@ -18,7 +25,8 @@ const Asking = () => {
 
   return (
     <>
-      <Blurb>{game.gameState.question}</Blurb>
+      <Title>Question {game.numQuestions}</Title>
+      <Question dangerouslySetInnerHTML={{ __html: game.gameState.question }} />
 
       {game.gameState.possibleAnswers.map(q => (
         <Button
@@ -26,7 +34,7 @@ const Asking = () => {
           onClick={() => dispatch(actions.answerQuestion)(q)}
           selected={userAnswer != null && userAnswer === q}
         >
-          {q}
+          <span dangerouslySetInnerHTML={{ __html: q }} />
         </Button>
       ))}
 

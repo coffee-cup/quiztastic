@@ -58,6 +58,7 @@ store.saveGame({
   admin: uid,
   joinable: true,
   startDate: Date.now(),
+  numQuestions: 0,
   players: {
     [uid]: {
       id: uid,

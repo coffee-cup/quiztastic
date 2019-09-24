@@ -44,9 +44,19 @@ export type GameState =
 export interface Game {
   code: string;
   admin: string;
+  numQuestions: number;
   joinable: boolean;
   players: { [id: string]: Player };
   startDate: number;
   options: GameOptions;
   gameState: GameState;
+}
+
+export interface Question {
+  category: string;
+  type: string;
+  difficulty: string;
+  question: string;
+  correct_answer: string;
+  incorrect_answers: string[];
 }

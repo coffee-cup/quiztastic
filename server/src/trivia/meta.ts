@@ -1,4 +1,4 @@
-export const categories = {
+export const categories: { [key: string]: number } = {
   All: -1,
   "General Knowledge": 9,
   Books: 10,
@@ -26,8 +26,8 @@ export const categories = {
   "Cartoon & Animation": 34,
 };
 
-export const difficulties = {
-  All: -1,
+export const difficulties: { [key: string]: string } = {
+  All: "all",
   Easy: "easy",
   Medium: "medium",
   Hard: "hard",

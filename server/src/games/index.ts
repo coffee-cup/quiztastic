@@ -3,6 +3,8 @@ import * as socket from "socket.io";
 import logger from "../logger";
 import * as store from "../store";
 import { AskingState, GameOptions, Game, Player } from "../types";
+import { getQuestion } from "../trivia";
+import { shuffle } from "../utils";
 
 export const randomCode = (): string => dogNames.allRandom().toLowerCase();
 
@@ -28,6 +30,7 @@ export const createGame = (
   return {
     code,
     admin: admin.id,
+    numQuestions: 0,
     joinable: true,
     players: { [admin.id]: admin },
     startDate: Date.now(),
@@ -50,22 +53,24 @@ export const setupSocketRoutes = (io: socket.Server) => {
       socket.emit("game info", { message: "game not found" });
     };
 
-    const joinGame = (code: string, id: string) => {
+    const joinGame = (code: string, playerId: string) => {
       const game = store.getGame(code);
 
       if (!game) {
         return gameDoesNotExist("join", code);
       }
 
-      if (!game.joinable) {
+      const playerAlreadyInGame = game.players[playerId] != null;
+
+      if (!playerAlreadyInGame && !game.joinable) {
         logger.info(`Join of game that is not joinable ${code}`);
         socket.emit("game info", { message: "game not joinable" });
         return;
       }
 
-      let player = game.players[id];
+      let player = game.players[playerId];
       if (player == null) {
-        player = createPlayer(id, game.options.startingLives);
+        player = createPlayer(playerId, game.options.startingLives);
         game.players[player.id] = player;
       }
 
@@ -97,16 +102,34 @@ export const setupSocketRoutes = (io: socket.Server) => {
       io.to(code).emit("game", { game });
     };
 
-    const nextQuestion = (game: Game) => {
-      game.gameState = {
-        type: "asking",
-        question: "How are you doing?",
-        correctAnswer: "Good",
-        possibleAnswers: ["Good", "Bad"],
-        playerAnswers: {},
-      };
+    const nextQuestion = async (game: Game) => {
+      try {
+        const question = await getQuestion(
+          game.options.category,
+          game.options.difficulty,
+        );
 
-      saveGame(game);
+        const possibleAnswers = [
+          ...question.incorrect_answers,
+          question.correct_answer,
+        ];
+
+        shuffle(possibleAnswers);
+
+        game.gameState = {
+          type: "asking",
+          question: question.question,
+          correctAnswer: question.correct_answer,
+          possibleAnswers,
+          playerAnswers: {},
+        };
+
+        game.numQuestions += 1;
+
+        saveGame(game);
+      } catch (e) {
+        logger.error(e);
+      }
     };
 
     const startGame = (code: string) => {
@@ -115,6 +138,8 @@ export const setupSocketRoutes = (io: socket.Server) => {
       if (!game) {
         return gameDoesNotExist("start", code);
       }
+
+      game.joinable = false;
 
       nextQuestion(game);
       logger.info(`Started game ${code}`);

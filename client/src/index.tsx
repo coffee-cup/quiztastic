@@ -36,10 +36,10 @@ const render = () =>
     document.getElementById("root"),
   );
 
-/* if (module.hot) { */
-/* module.hot.accept(() => { */
-/* render(); */
-/* }); */
-/* } */
+if (module.hot) {
+  module.hot.accept(() => {
+    render();
+  });
+}
 
 render();

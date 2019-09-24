@@ -64,6 +64,8 @@ export type GameState =
 
 export interface Game {
   code: string;
+  admin: string;
+  numQuestions: number;
   players: { [id: string]: Player };
   options: GameOptions;
   gameState: GameState;

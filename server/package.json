@@ -16,6 +16,7 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "memory-cache": "^0.2.0",
+    "node-fetch": "^2.6.0",
     "signale": "^1.4.0",
     "socket.io": "^2.3.0"
   },
@@ -26,6 +27,7 @@
     "@types/koa-router": "^7.0.42",
     "@types/koa__cors": "^2.2.3",
     "@types/memory-cache": "^0.2.0",
+    "@types/node-fetch": "^2.5.2",
     "@types/signale": "^1.2.1",
     "@types/socket.io": "^2.1.2",
     "jest": "^24.9.0",
