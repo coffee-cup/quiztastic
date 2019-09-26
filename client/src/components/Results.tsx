@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import Players from "./Players";
 import { local, dispatch, state, watch } from "../model";
-import { Blurb } from "./Text";
+import { Title, Blurb } from "./Text";
 import Button from "./Button";
 import * as actions from "../actions";
 
@@ -23,6 +23,7 @@ const Results = () => {
   }
 
   const isAdmin = game.admin === playerId;
+  const correct = game.gameState.correctPlayers[playerId];
 
   return (
     <>
@@ -30,6 +31,8 @@ const Results = () => {
         The answer was{" "}
         <Answer dangerouslySetInnerHTML={{ __html: game.gameState.answer }} />
       </Blurb>
+
+      <Title>{correct ? "👍" : "👎"}</Title>
 
       {isAdmin && (
         <Button onClick={dispatch(actions.advanceRound)}>Next Question</Button>
