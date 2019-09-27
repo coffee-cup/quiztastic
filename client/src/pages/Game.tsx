@@ -1,10 +1,11 @@
 import * as React from "react";
 import * as io from "socket.io-client";
 import * as actions from "../actions";
-import Asking from "../components/Asking";
+import Asking from "../components/states/Asking";
 import Center from "../components/Center";
-import Results from "../components/Results";
-import WaitingRoom from "../components/WaitingRoom";
+import Results from "../components/states/Results";
+import Loading from "../components/states/Loading";
+import WaitingRoom from "../components/states/WaitingRoom";
 import { dispatch, local, state, watch } from "../model";
 import { GameStatus } from "../types";
 
@@ -31,6 +32,8 @@ const InGame = () => {
     return <Asking />;
   } else if (game.gameState.type === "results") {
     return <Results />;
+  } else if (game.gameState.type === "loading") {
+    return <Loading />;
   }
 
   return null;
@@ -55,7 +58,7 @@ const Game = (props: Props) => {
   return (
     <Center>
       {gameStatus === GameStatus.loading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : gameStatus === GameStatus.notFound ? (
         <h1>{"Game not found D:"}</h1>
       ) : gameStatus === GameStatus.notJoinable ? (

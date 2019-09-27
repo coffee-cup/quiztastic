@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import * as actions from "../actions";
-import { dispatch, local, state, watch } from "../model";
-import Button from "./Button";
-import { FormGroup } from "./Form";
-import Input from "./Input";
-import Players from "./Players";
+import * as actions from "../../actions";
+import { dispatch, local, state, watch } from "../../model";
+import Button from "../Button";
+import { FormGroup } from "../Form";
+import Input from "../Input";
+import Players from "../Players";
 
 const StyledGameInfo = styled.div`
   padding-bottom: 1rem;

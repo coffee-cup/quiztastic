@@ -1,10 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
-import * as actions from "../actions";
-import { dispatch, local, state, watch } from "../model";
-import Button from "./Button";
-import Players from "./Players";
-import { Blurb, Title } from "./Text";
+import * as actions from "../../actions";
+import { dispatch, local, state, watch } from "../../model";
+import Button from "../Button";
+import Players from "../Players";
+import { Blurb, Title } from "../Text";
 
 const Answer = styled.span`
   display: block;

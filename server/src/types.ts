@@ -35,11 +35,16 @@ export interface FinishedState {
   winnerId: string;
 }
 
+export interface LoadingState {
+  type: "loading";
+}
+
 export type GameState =
   | WaitingState
   | AskingState
   | ResultsState
-  | FinishedState;
+  | FinishedState
+  | LoadingState;
 
 export interface Game {
   code: string;

@@ -103,6 +103,11 @@ export const setupSocketRoutes = (io: socket.Server) => {
     };
 
     const nextQuestion = async (game: Game) => {
+      game.gameState = {
+        type: "loading",
+      };
+      saveGame(game);
+
       try {
         const question = await getQuestion(
           game.options.category,
