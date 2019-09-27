@@ -6,6 +6,7 @@ import Center from "../components/Center";
 import Results from "../components/states/Results";
 import Loading from "../components/states/Loading";
 import WaitingRoom from "../components/states/WaitingRoom";
+import Finished from "../components/states/Finished";
 import { dispatch, local, state, watch } from "../model";
 import { GameStatus } from "../types";
 
@@ -32,6 +33,8 @@ const InGame = () => {
     return <Asking />;
   } else if (game.gameState.type === "results") {
     return <Results />;
+  } else if (game.gameState.type === "finished") {
+    return <Finished />;
   } else if (game.gameState.type === "loading") {
     return <Loading />;
   }

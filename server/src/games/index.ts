@@ -194,11 +194,29 @@ export const setupSocketRoutes = (io: socket.Server) => {
           correctPlayers[player.id] = answerCorrect;
         }
 
-        game.gameState = {
-          type: "results",
-          answer: state.correctAnswer,
-          correctPlayers,
-        };
+        const remainingPlayers = Object.values(game.players).filter(
+          p => p.lives > 0,
+        );
+
+        if (remainingPlayers.length === 0) {
+          // draw
+          game.gameState = {
+            type: "finished",
+            winnerId: null,
+          };
+        } else if (remainingPlayers.length === 1) {
+          // game won
+          game.gameState = {
+            type: "finished",
+            winnerId: remainingPlayers[0].id,
+          };
+        } else {
+          game.gameState = {
+            type: "results",
+            answer: state.correctAnswer,
+            correctPlayers,
+          };
+        }
       }
 
       saveGame(game);

@@ -53,7 +53,7 @@ export interface ResultsState {
 
 export interface FinishedState {
   type: "finished";
-  winnerId: string;
+  winnerId: string | null;
 }
 
 export interface LoadingState {
