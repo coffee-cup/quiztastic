@@ -61,7 +61,7 @@ const Players: React.FC<{ hideSelf?: boolean }> = props => {
       return false;
     }
 
-    return p.ready;
+    return p.ready && p.lives > 0;
   });
 
   return (

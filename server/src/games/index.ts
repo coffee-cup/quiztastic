@@ -153,7 +153,9 @@ export const setupSocketRoutes = (io: socket.Server) => {
     const checkIfAllAnswered = (game: Game): boolean => {
       const askingState = game.gameState as AskingState;
       const allAnswered = Object.values(game.players).reduce(
-        (acc, player) => acc && askingState.playerAnswers[player.id] != null,
+        (acc, player) =>
+          acc &&
+          (player.lives <= 0 || askingState.playerAnswers[player.id] != null),
         true,
       );
 

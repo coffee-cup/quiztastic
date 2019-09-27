@@ -26,7 +26,7 @@ const Button = styled.button<{ selected?: boolean }>`
   }
 
   &:active {
-    transform: scale(1.1);
+    ${props => !props.disabled && "transform: scale(1.1);"};
   }
 `;
 

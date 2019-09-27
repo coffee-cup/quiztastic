@@ -22,8 +22,9 @@ const Results = () => {
     return null;
   }
 
-  const isAdmin = game.admin === playerId;
+  const player = game.players[playerId];
   const correct = game.gameState.correctPlayers[playerId];
+  const isDead = player.lives <= 0;
 
   return (
     <>
@@ -32,11 +33,19 @@ const Results = () => {
         <Answer dangerouslySetInnerHTML={{ __html: game.gameState.answer }} />
       </Blurb>
 
-      <Title>{correct ? "👍" : "👎"}</Title>
+      <Title>
+        {isDead ? (
+          <>
+            ☠️ <br /> Game Over
+          </>
+        ) : correct ? (
+          "👍"
+        ) : (
+          "👎"
+        )}
+      </Title>
 
-      {isAdmin && (
-        <Button onClick={dispatch(actions.advanceRound)}>Next Question</Button>
-      )}
+      {<Button onClick={dispatch(actions.advanceRound)}>Next Question</Button>}
 
       <Players />
     </>
