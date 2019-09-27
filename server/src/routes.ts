@@ -2,8 +2,8 @@ import * as Router from "koa-router";
 import { createGame, createPlayer, randomCode } from "./games";
 import logger from "./logger";
 import { getGame, isCodeAvailable, saveGame } from "./store";
-import { GameOptions } from "./types";
 import { categories, difficulties } from "./trivia";
+import { GameOptions } from "./types";
 import { verifyString } from "./verify";
 
 const router = new Router();

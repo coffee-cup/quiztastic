@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import { state, watch, local } from "../model";
 import { readyPlayer } from "../actions";
+import { local, state, watch } from "../model";
 
 const StyledPlayer = styled.div`
   display: flex;
@@ -48,7 +48,6 @@ const Player: React.FC<{ id: string }> = ({ id }) => {
 };
 
 const StyledPlayers = styled.div`
-  padding-top: 1rem;
   text-align: left;
 `;
 

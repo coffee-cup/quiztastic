@@ -1,7 +1,7 @@
 import { push } from "@prodo/route";
 import uuid from "uuid/v4";
 import { dispatch, local, state } from "./model";
-import { State, Game, GameStatus } from "./types";
+import { Game, GameStatus, State } from "./types";
 
 let socket: SocketIOClient.Socket | null = null;
 

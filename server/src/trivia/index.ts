@@ -1,7 +1,7 @@
-import * as meta from "./meta";
 import fetch from "node-fetch";
-import { Question } from "../types";
 import * as querystring from "querystring";
+import { Question } from "../types";
+import * as meta from "./meta";
 
 export const getQuestion = async (
   category: string,

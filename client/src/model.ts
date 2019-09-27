@@ -2,7 +2,7 @@ import { createModel } from "@prodo/core";
 import localPlugin from "@prodo/local";
 import loggerPlugin from "@prodo/logger";
 import routePlugin from "@prodo/route";
-import { State, Local } from "./types";
+import { Local, State } from "./types";
 
 export const model = createModel<State>()
   .with(localPlugin<Local>())

@@ -2,8 +2,8 @@ import * as dogNames from "dog-names";
 import * as socket from "socket.io";
 import logger from "../logger";
 import * as store from "../store";
-import { AskingState, GameOptions, Game, Player } from "../types";
 import { getQuestion } from "../trivia";
+import { AskingState, Game, GameOptions, Player } from "../types";
 import { shuffle } from "../utils";
 
 export const randomCode = (): string => dogNames.allRandom().toLowerCase();

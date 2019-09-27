@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as io from "socket.io-client";
 import * as actions from "../actions";
+import Asking from "../components/Asking";
 import Center from "../components/Center";
+import Results from "../components/Results";
+import WaitingRoom from "../components/WaitingRoom";
 import { dispatch, local, state, watch } from "../model";
 import { GameStatus } from "../types";
-import WaitingRoom from "../components/WaitingRoom";
-import Asking from "../components/Asking";
-import Results from "../components/Results";
 
 export interface Props {
   code: string;

@@ -1,10 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
-import { local, dispatch, state, watch } from "../model";
-import Button from "./Button";
-import { Title } from "./Text";
 import * as actions from "../actions";
+import { dispatch, local, state, watch } from "../model";
+import Button from "./Button";
 import Players from "./Players";
+import { Title } from "./Text";
 
 const Question = styled.p`
   margin-top: 0;

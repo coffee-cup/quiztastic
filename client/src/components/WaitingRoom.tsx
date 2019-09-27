@@ -1,17 +1,22 @@
 import * as React from "react";
-import { FormGroup } from "./Form";
+import styled from "styled-components";
+import * as actions from "../actions";
+import { dispatch, local, state, watch } from "../model";
 import Button from "./Button";
+import { FormGroup } from "./Form";
 import Input from "./Input";
 import Players from "./Players";
-import { dispatch, state, watch, local } from "../model";
-import * as actions from "../actions";
+
+const StyledGameInfo = styled.div`
+  padding-bottom: 1rem;
+`;
 
 const GameInfo: React.FC<{
   code: string;
   category: string;
   difficulty: string;
 }> = props => (
-  <div>
+  <StyledGameInfo>
     <FormGroup label="game code">
       <h1>{props.code}</h1>
     </FormGroup>
@@ -21,8 +26,12 @@ const GameInfo: React.FC<{
     <FormGroup label="difficulty">
       <h1>{props.difficulty}</h1>
     </FormGroup>
-  </div>
+  </StyledGameInfo>
 );
+
+const StyledWaitingRoom = styled.div`
+  text-align: left;
+`;
 
 const WaitingRoom = () => {
   const currentGame = watch(state.currentGame);
@@ -44,7 +53,7 @@ const WaitingRoom = () => {
   const player = game.players[playerId];
 
   return (
-    <div>
+    <StyledWaitingRoom>
       <GameInfo
         code={game.code}
         category={game.options.category}
@@ -73,13 +82,13 @@ const WaitingRoom = () => {
       )}
 
       {player.ready && !player.admin && (
-        <FormGroup>
-          <h4>{"Waiting for game to start... ヾ(￣0￣ )ノ"}</h4>
-        </FormGroup>
+        <h3>{"Waiting for game to start... ヾ(￣0￣ )ノ"}</h3>
       )}
 
-      <Players />
-    </div>
+      <FormGroup label="players">
+        <Players />
+      </FormGroup>
+    </StyledWaitingRoom>
   );
 };
 
