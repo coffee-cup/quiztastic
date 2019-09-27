@@ -6,6 +6,10 @@ import Input from "./Input";
 const StyledFormGroup = styled.div`
   text-align: left;
   padding-bottom: 1rem;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export const Label = styled.span`

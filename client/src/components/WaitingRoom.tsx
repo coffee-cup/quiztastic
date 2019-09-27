@@ -1,16 +1,27 @@
 import * as React from "react";
 import { FormGroup } from "./Form";
 import Button from "./Button";
-import { Title } from "./Text";
 import Input from "./Input";
 import Players from "./Players";
 import { dispatch, state, watch, local } from "../model";
 import * as actions from "../actions";
 
-const GameInfo = (props: { code: string }) => (
-  <FormGroup label="game code">
-    <Title>{props.code}</Title>
-  </FormGroup>
+const GameInfo: React.FC<{
+  code: string;
+  category: string;
+  difficulty: string;
+}> = props => (
+  <div>
+    <FormGroup label="game code">
+      <h1>{props.code}</h1>
+    </FormGroup>
+    <FormGroup label="category">
+      <h1>{props.category}</h1>
+    </FormGroup>
+    <FormGroup label="difficulty">
+      <h1>{props.difficulty}</h1>
+    </FormGroup>
+  </div>
 );
 
 const WaitingRoom = () => {
@@ -34,7 +45,11 @@ const WaitingRoom = () => {
 
   return (
     <div>
-      <GameInfo code={game.code} />
+      <GameInfo
+        code={game.code}
+        category={game.options.category}
+        difficulty={game.options.difficulty}
+      />
 
       {!player.ready && (
         <FormGroup label="Your name">
