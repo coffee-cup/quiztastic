@@ -60,7 +60,7 @@ export interface Game {
 
 export interface Question {
   category: string;
-  type: string;
+  type: "multiple" | "boolean";
   difficulty: string;
   question: string;
   correct_answer: string;

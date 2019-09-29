@@ -115,12 +115,17 @@ export const setupSocketRoutes = (io: socket.Server) => {
           game.options.difficulty,
         );
 
-        const possibleAnswers = [
+        let possibleAnswers = [
           ...question.incorrect_answers,
           question.correct_answer,
         ];
 
-        shuffle(possibleAnswers);
+        // true/false question should always be in same order
+        if (question.type === "multiple") {
+          shuffle(possibleAnswers);
+        } else {
+          possibleAnswers = possibleAnswers.reverse();
+        }
 
         game.gameState = {
           type: "asking",
