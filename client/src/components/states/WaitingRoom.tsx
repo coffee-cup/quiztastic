@@ -61,16 +61,21 @@ const WaitingRoom = () => {
       />
 
       {!player.ready && (
-        <FormGroup label="Your name">
-          <Input
-            value={name}
-            onChange={e => setName(e.target.value)}
-            placeholder="Name"
-          />
-          <Button onClick={() => dispatch(actions.readyPlayer)(name)}>
-            Ready
-          </Button>
-        </FormGroup>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            dispatch(actions.readyPlayer)(name);
+          }}
+        >
+          <FormGroup label="Your name">
+            <Input
+              value={name}
+              onChange={e => setName(e.target.value)}
+              placeholder="Name"
+            />
+            <Button type="submit">Ready</Button>
+          </FormGroup>
+        </form>
       )}
 
       {player.ready && player.admin && (

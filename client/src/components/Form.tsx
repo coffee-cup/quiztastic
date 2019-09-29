@@ -29,7 +29,7 @@ export const FormGroup: React.FC<{
   </StyledFormGroup>
 );
 
-const StyledInputButtonGroup = styled.div`
+const StyledInputButtonGroup = styled(FormGroup)`
   display: flex;
   align-items: center;
 
@@ -48,27 +48,28 @@ export const InputButtonGroup: React.FC<{
   buttonText: string;
   placeholder: string;
   value: string;
+  labelText?: string;
   onChange?: (value: string) => void;
 }> = props => {
   const [value, setValue] = React.useState(props.value);
-  const [disabled, setDisabled] = React.useState(value !== "");
 
   return (
-    <StyledInputButtonGroup>
-      <Input
-        placeholder={props.placeholder}
-        value={value}
-        onChange={e => {
-          setValue(e.target.value);
-          setDisabled(e.target.value !== "");
-        }}
-      />
-      <Button
-        disabled={disabled}
-        onClick={() => props.onChange && props.onChange(value)}
-      >
-        {props.buttonText}
-      </Button>
-    </StyledInputButtonGroup>
+    <FormGroup label={props.labelText}>
+      <StyledInputButtonGroup>
+        <Input
+          placeholder={props.placeholder}
+          value={value}
+          onChange={e => {
+            setValue(e.target.value);
+          }}
+        />
+        <Button
+          disabled={value !== ""}
+          onClick={() => props.onChange && props.onChange(value)}
+        >
+          {props.buttonText}
+        </Button>
+      </StyledInputButtonGroup>
+    </FormGroup>
   );
 };
