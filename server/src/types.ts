@@ -53,6 +53,7 @@ export interface Game {
   joinable: boolean;
   players: { [id: string]: Player };
   startDate: number;
+  isSuddenDeath: boolean;
   options: GameOptions;
   gameState: GameState;
 }

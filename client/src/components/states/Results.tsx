@@ -25,6 +25,9 @@ const Results = () => {
   const player = game.players[playerId];
   const correct = game.gameState.correctPlayers[playerId];
   const isDead = player.lives <= 0;
+  const numCorrect = Object.values(game.gameState.correctPlayers).filter(
+    Boolean,
+  ).length;
 
   return (
     <>
@@ -44,6 +47,10 @@ const Results = () => {
           "👎"
         )}
       </Title>
+
+      {numCorrect === 0 && game.isSuddenDeath && (
+        <p>Sudden death. Last one standing wins.</p>
+      )}
 
       {<Button onClick={dispatch(actions.advanceRound)}>Next Question</Button>}
 

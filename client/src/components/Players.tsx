@@ -27,6 +27,7 @@ export const PlayerInfo = styled.span`
 const Player: React.FC<{ id: string }> = ({ id }) => {
   const currentGame = watch(state.currentGame)!;
   const gameState = watch(state.games[currentGame].gameState);
+  const isSuddenDeath = watch(state.games[currentGame].isSuddenDeath);
 
   const player = watch(state.games[currentGame].players[id]);
   const isYou = watch(local.uid)! === player.id;
@@ -41,7 +42,7 @@ const Player: React.FC<{ id: string }> = ({ id }) => {
       </PlayerName>
 
       {gameState.type !== "asking" && (
-        <PlayerInfo>{player.lives} lives</PlayerInfo>
+        <PlayerInfo>{isSuddenDeath ? "*" : `${player.lives} lives`}</PlayerInfo>
       )}
     </StyledPlayer>
   );

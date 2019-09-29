@@ -3,7 +3,7 @@ import * as http from "http";
 import * as Koa from "koa";
 import * as bodyParser from "koa-bodyparser";
 import * as socket from "socket.io";
-import { setupSocketRoutes } from "./games";
+import { setupSocketRoutes } from "./game";
 import logger from "./logger";
 import router from "./routes";
 import * as store from "./store";
@@ -59,6 +59,7 @@ store.saveGame({
   joinable: true,
   startDate: Date.now(),
   numQuestions: 0,
+  isSuddenDeath: false,
   players: {
     [uid]: {
       id: uid,

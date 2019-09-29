@@ -1,5 +1,5 @@
 import * as Router from "koa-router";
-import { createGame, createPlayer, randomCode } from "./games";
+import { createGame, createPlayer, randomCode } from "./game";
 import logger from "./logger";
 import { getGame, isCodeAvailable, saveGame } from "./store";
 import { categories, difficulties } from "./trivia";

@@ -1,10 +1,10 @@
 import * as dogNames from "dog-names";
 import * as socket from "socket.io";
-import logger from "../logger";
-import * as store from "../store";
-import { getQuestion } from "../trivia";
-import { AskingState, Game, GameOptions, Player } from "../types";
-import { shuffle } from "../utils";
+import logger from "./logger";
+import * as store from "./store";
+import { getQuestion } from "./trivia";
+import { AskingState, Game, GameOptions, Player } from "./types";
+import { shuffle } from "./utils";
 
 export const randomCode = (): string => dogNames.allRandom().toLowerCase();
 
@@ -34,6 +34,7 @@ export const createGame = (
     joinable: true,
     players: { [admin.id]: admin },
     startDate: Date.now(),
+    isSuddenDeath: false,
     options,
     gameState: {
       type: "waiting",
@@ -181,6 +182,9 @@ export const setupSocketRoutes = (io: socket.Server) => {
       if (checkIfAllAnswered(game)) {
         logger.info("Game all answered!");
 
+        const alivePlayers = Object.values(game.players)
+          .filter(p => p.lives > 0)
+          .map(p => p.id);
         const correctPlayers: { [id: string]: boolean } = {};
         for (const player of Object.values(game.players)) {
           const playerAnswer = state.playerAnswers[player.id];
@@ -199,11 +203,19 @@ export const setupSocketRoutes = (io: socket.Server) => {
         );
 
         if (remainingPlayers.length === 0) {
-          // draw
+          // go to sudden death. game cannot end without a winner
+          // reset lives of players who were alive before question to 1
+          alivePlayers.forEach(pid => {
+            game.players[pid].lives = 1;
+          });
+
           game.gameState = {
-            type: "finished",
-            winnerId: null,
+            type: "results",
+            answer: state.correctAnswer,
+            correctPlayers,
           };
+
+          game.isSuddenDeath = true;
         } else if (remainingPlayers.length === 1) {
           // game won
           game.gameState = {

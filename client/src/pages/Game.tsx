@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as io from "socket.io-client";
 import * as actions from "../actions";
-import Asking from "../components/states/Asking";
 import Center from "../components/Center";
-import Results from "../components/states/Results";
-import Loading from "../components/states/Loading";
-import WaitingRoom from "../components/states/WaitingRoom";
+import Asking from "../components/states/Asking";
 import Finished from "../components/states/Finished";
+import Loading from "../components/states/Loading";
+import Results from "../components/states/Results";
+import WaitingRoom from "../components/states/WaitingRoom";
 import { dispatch, local, state, watch } from "../model";
 import { GameStatus } from "../types";
 

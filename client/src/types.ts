@@ -72,6 +72,7 @@ export interface Game {
   admin: string;
   numQuestions: number;
   players: { [id: string]: Player };
+  isSuddenDeath: boolean;
   options: GameOptions;
   gameState: GameState;
 }
