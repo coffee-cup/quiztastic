@@ -28,13 +28,17 @@ const startCreateGame = async () => {
     startingLives: 3,
   };
 
-  state.categories = await api.getCategories();
-  gameOptions.category = state.categories[0];
+  try {
+    state.categories = await api.getCategories();
+    gameOptions.category = state.categories[0];
 
-  state.difficulties = await api.getDifficulties();
-  gameOptions.difficulty = state.difficulties[0];
+    state.difficulties = await api.getDifficulties();
+    gameOptions.difficulty = state.difficulties[0];
 
-  state.createGameOptions = gameOptions;
+    state.createGameOptions = gameOptions;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 const selectCategory = (category: string) => {
