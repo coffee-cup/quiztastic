@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "clean": "rm -rf lib",
     "test": "jest",
     "lint": "tslint -p ."
   },

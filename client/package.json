@@ -6,6 +6,7 @@
   "scripts": {
     "build": "parcel build src/index.html",
     "start": "parcel src/index.html",
+    "clean": "rm -rf dist lib",
     "tsc": "tsc -p . --noEmit --watch",
     "lint": "tslint -p ."
   },
@@ -19,7 +20,7 @@
     "@prodo/logger": "^0.1.0",
     "@prodo/route": "^0.1.0",
     "history": "^4.10.1",
-    "react": ">=16.10.2",
+    "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "socket.io-client": "^2.3.0",
     "styled-components": "^4.4.0",
