@@ -11,9 +11,10 @@ const Finished = () => {
     return null;
   }
 
+  const isSinglePlayerGame = Object.values(game.players).length === 1;
   const winningPlayer = game.gameState.winnerId;
-
   const youWin = winningPlayer === playerId;
+  const numCorrect = game.numQuestions - game.options.startingLives;
 
   return (
     <>
@@ -23,11 +24,14 @@ const Finished = () => {
         <>
           <Title>🎉</Title>
 
-          {youWin ? (
-            <Title>You Win!</Title>
-          ) : (
-            <Title>{game.players[winningPlayer].name} Won!</Title>
-          )}
+          {isSinglePlayerGame && <Title>{numCorrect} Correct</Title>}
+
+          {!isSinglePlayerGame &&
+            (youWin ? (
+              <Title>You Win!</Title>
+            ) : (
+              <Title>{game.players[winningPlayer].name} Won!</Title>
+            ))}
         </>
       )}
     </>

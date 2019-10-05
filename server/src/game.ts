@@ -120,6 +120,7 @@ export async function* readyPlayer(game: Game, playerId: string, name: string) {
 }
 
 export async function* startGame(game: Game) {
+  game.joinable = false;
   game.gameState = {
     type: "loading",
   };
@@ -166,36 +167,54 @@ export async function* answerQuestion(
       correctPlayers[player.id] = answerCorrect;
     }
 
+    const isSinglePlayerGame = Object.values(game.players).length === 1;
     const remainingPlayers = Object.values(game.players).filter(
       p => p.lives > 0,
     );
 
-    if (remainingPlayers.length === 0) {
-      // go to sudden death. game cannot end without a winner
-      // reset lives of players who were alive before question to 1
-      alivePlayers.forEach(pid => {
-        game.players[pid].lives = 1;
-      });
+    if (isSinglePlayerGame) {
+      const player = Object.values(game.players)[0];
 
-      game.gameState = {
-        type: "results",
-        answer: state.correctAnswer,
-        correctPlayers,
-      };
-
-      game.isSuddenDeath = true;
-    } else if (remainingPlayers.length === 1) {
-      // game won
-      game.gameState = {
-        type: "finished",
-        winnerId: remainingPlayers[0].id,
-      };
+      if (player.lives === 0) {
+        game.gameState = {
+          type: "finished",
+          winnerId: player.id,
+        };
+      } else {
+        game.gameState = {
+          type: "results",
+          answer: state.correctAnswer,
+          correctPlayers,
+        };
+      }
     } else {
-      game.gameState = {
-        type: "results",
-        answer: state.correctAnswer,
-        correctPlayers,
-      };
+      if (remainingPlayers.length === 0) {
+        // go to sudden death. game cannot end without a winner
+        // reset lives of players who were alive before question to 1
+        alivePlayers.forEach(pid => {
+          game.players[pid].lives = 1;
+        });
+
+        game.gameState = {
+          type: "results",
+          answer: state.correctAnswer,
+          correctPlayers,
+        };
+
+        game.isSuddenDeath = true;
+      } else if (remainingPlayers.length === 1) {
+        // game won
+        game.gameState = {
+          type: "finished",
+          winnerId: remainingPlayers[0].id,
+        };
+      } else {
+        game.gameState = {
+          type: "results",
+          answer: state.correctAnswer,
+          correctPlayers,
+        };
+      }
     }
   }
 

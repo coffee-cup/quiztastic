@@ -19,7 +19,6 @@ export const getQuestion = async (
 
   const query: { [key: string]: any } = {
     amount: 1,
-    type: "boolean",
   };
 
   if (categoryCode !== -1) {
