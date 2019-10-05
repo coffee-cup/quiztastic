@@ -2,8 +2,8 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib",
-    "target": "es5",
-    "lib": ["es2017"],
+    "target": "es6",
+    "lib": ["esnext"],
     "moduleResolution": "node",
     "sourceMap": true,
     "noFallthroughCasesInSwitch": true,

@@ -3,7 +3,7 @@ import * as http from "http";
 import * as Koa from "koa";
 import * as bodyParser from "koa-bodyparser";
 import * as socket from "socket.io";
-import { setupSocketRoutes } from "./game";
+import { setupSocketRoutes } from "./socket";
 import logger from "./logger";
 import router from "./routes";
 import * as store from "./store";
@@ -52,7 +52,7 @@ app.use(router.allowedMethods());
 const server = http.createServer(app.callback());
 const io = socket(server);
 
-const uid = "4997356b-b337-4703-8ce8-fcd161d65ef1";
+const uid = "5c0c2a2d-b38e-49a1-a907-48be9772f4c9";
 store.saveGame({
   code: "hello",
   admin: uid,
