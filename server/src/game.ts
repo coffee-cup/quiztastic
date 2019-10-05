@@ -56,7 +56,7 @@ const nextQuestion = async (game: Game): Promise<Game> => {
     if (question.type === "multiple") {
       shuffle(possibleAnswers);
     } else {
-      possibleAnswers = possibleAnswers.reverse();
+      possibleAnswers = possibleAnswers.sort().reverse();
     }
 
     game.gameState = {
@@ -127,6 +127,10 @@ export async function* startGame(game: Game) {
 
   const nextGame = await nextQuestion(game);
   yield nextGame;
+}
+
+export async function* advanceRound(game: Game) {
+  yield* startGame(game);
 }
 
 export async function* answerQuestion(

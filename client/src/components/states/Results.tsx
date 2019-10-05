@@ -29,6 +29,11 @@ const Results = () => {
     Boolean,
   ).length;
 
+  const isAdminAlive = game.players[game.admin].lives > 0;
+  const showNextButtonTo = isAdminAlive
+    ? game.admin
+    : Object.values(game.players).filter(p => p.lives > 0)[0];
+
   return (
     <>
       <Blurb>
@@ -52,7 +57,9 @@ const Results = () => {
         <p>Sudden death. Last one standing wins.</p>
       )}
 
-      {<Button onClick={dispatch(actions.advanceRound)}>Next Question</Button>}
+      {showNextButtonTo === playerId && (
+        <Button onClick={dispatch(actions.advanceRound)}>Next Question</Button>
+      )}
 
       <Players />
     </>

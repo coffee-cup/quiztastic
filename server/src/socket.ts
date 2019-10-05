@@ -1,8 +1,14 @@
 import * as socket from "socket.io";
+import {
+  advanceRound,
+  answerQuestion,
+  joinGame,
+  readyPlayer,
+  startGame,
+} from "./game";
 import logger from "./logger";
 import * as store from "./store";
 import { Game } from "./types";
-import { joinGame, startGame, readyPlayer, answerQuestion } from "./game";
 
 export const setupSocketRoutes = (io: socket.Server) => {
   io.on("connection", socket => {
@@ -62,6 +68,10 @@ export const setupSocketRoutes = (io: socket.Server) => {
 
     socket.on("start game", ({ code }: { code: string }) => {
       withGame(code, startGame);
+    });
+
+    socket.on("advance round", ({ code }: { code: string }) => {
+      withGame(code, advanceRound);
     });
 
     socket.on(
