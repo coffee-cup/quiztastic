@@ -14,8 +14,10 @@ typography.injectStyles();
 
 const history = createBrowserHistory();
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const { Provider } = model.createStore({
-  logger: true,
+  logger: !isProduction,
   devtools: false,
   initState: {
     gameStatus: GameStatus.loading,
