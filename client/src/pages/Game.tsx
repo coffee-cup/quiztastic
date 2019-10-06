@@ -52,7 +52,7 @@ const Game = (props: Props) => {
   }
 
   React.useEffect(() => {
-    const socket = io.connect("http://localhost:3000");
+    const socket = io.connect(process.env.BASE_URL || "http://localhost:3000");
 
     actions.setupSocket(dispatch, socket);
     dispatch(actions.joinGame)(props.code, playerName);

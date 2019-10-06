@@ -1,6 +1,6 @@
 import { Game, GameOptions } from "./types";
 
-const baseUrl = process.env.BASE_URL || "http://localhost:3000/api";
+const baseUrl = `${process.env.BASE_URL || "http://localhost:3000"}/api`;
 
 const apiRoutes = {
   game: (code?: string) => `game${code != null ? "/" + code : ""}`,

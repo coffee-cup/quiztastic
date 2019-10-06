@@ -14,7 +14,6 @@ export const setupSocket = (
 
   if (socket) {
     socket.on("disconnect", () => {
-      // dispatch(redirectHome)();
       socket = null;
     });
 
