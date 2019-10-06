@@ -1,6 +1,6 @@
 import * as dogNames from "dog-names";
 import logger from "./logger";
-import { getQuestion } from "./trivia";
+import { getSession, getQuestion } from "./trivia";
 import { AskingState, Game, GameOptions, Player } from "./types";
 import { shuffle } from "./utils";
 
@@ -45,6 +45,7 @@ const nextQuestion = async (game: Game): Promise<Game> => {
     const question = await getQuestion(
       game.options.category,
       game.options.difficulty,
+      game.token,
     );
 
     let possibleAnswers = [
@@ -143,6 +144,10 @@ export async function* startGame(game: Game) {
     type: "loading",
   };
   yield game;
+
+  if (game.token == null) {
+    game.token = await getSession();
+  }
 
   const nextGame = await nextQuestion(game);
   yield nextGame;

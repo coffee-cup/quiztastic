@@ -3,9 +3,22 @@ import * as querystring from "querystring";
 import { Question } from "../types";
 import * as meta from "./meta";
 
+export const getSession = async (): Promise<string | undefined> => {
+  const path = "https://opentdb.com/api_token.php?command=request";
+
+  const data = await fetch(path).then(res => res.json());
+
+  if (data && data.token != null) {
+    return data.token;
+  }
+
+  return undefined;
+};
+
 export const getQuestion = async (
   category: string,
   difficulty: string,
+  token?: string,
 ): Promise<Question> => {
   const categoryCode = meta.categories[category];
   if (categoryCode == null) {
@@ -19,6 +32,7 @@ export const getQuestion = async (
 
   const query: { [key: string]: any } = {
     amount: 1,
+    token,
   };
 
   if (categoryCode !== -1) {

@@ -56,6 +56,7 @@ export interface Game {
   isSuddenDeath: boolean;
   options: GameOptions;
   gameState: GameState;
+  token?: string;
 }
 
 export interface Question {
