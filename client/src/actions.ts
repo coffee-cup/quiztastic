@@ -1,8 +1,8 @@
 import { push } from "@prodo/route";
 import uuid from "uuid/v4";
-import { dispatch, local, state } from "./model";
-import { Game, GameStatus, State, GameOptions } from "./types";
 import * as api from "./api";
+import { dispatch, local, state } from "./model";
+import { Game, GameOptions, GameStatus, State } from "./types";
 
 let socket: SocketIOClient.Socket | null = null;
 
@@ -157,6 +157,7 @@ export const startCreateGame = async () => {
       gameOptions.difficulty = state.difficulties[0];
     }
   } catch (e) {
+    // tslint:disable-next-line:no-console
     console.error(e);
   }
 

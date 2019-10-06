@@ -1,9 +1,9 @@
 import * as React from "react";
-import { dispatch, local, state, watch } from "../../model";
-import { Title } from "../Text";
 import styled from "styled-components";
-import GameOptions from "../GameOptions";
 import * as actions from "../../actions";
+import { dispatch, local, state, watch } from "../../model";
+import GameOptions from "../GameOptions";
+import { Title } from "../Text";
 
 const StyledFinished = styled.div``;
 

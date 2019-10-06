@@ -1,9 +1,9 @@
 import * as React from "react";
+import * as actions from "../actions";
 import Center from "../components/Center";
+import GameOptions from "../components/GameOptions";
 import { Title } from "../components/Text";
 import { dispatch } from "../model";
-import GameOptions from "../components/GameOptions";
-import * as actions from "../actions";
 
 const Create = () => {
   return (

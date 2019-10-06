@@ -1,9 +1,9 @@
 import * as React from "react";
-import Button from "./Button";
-import { dispatch, state, watch } from "../model";
-import Select from "./Select";
 import styled from "styled-components";
 import * as actions from "../actions";
+import { dispatch, state, watch } from "../model";
+import Button from "./Button";
+import Select from "./Select";
 
 const Group = styled.div`
   display: flex;
