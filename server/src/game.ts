@@ -87,6 +87,24 @@ const checkIfAllAnswered = (game: Game): boolean => {
   return allAnswered;
 };
 
+export async function* restartGame(game: Game, gameOptions: GameOptions) {
+  game.options = gameOptions;
+  game.numQuestions = 0;
+  game.isSuddenDeath = false;
+  game.joinable = true;
+
+  Object.values(game.players).forEach(p => {
+    p.ready = true;
+    p.lives = game.options.startingLives;
+  });
+
+  game.gameState = {
+    type: "waiting",
+  };
+
+  yield game;
+}
+
 export async function* joinGame(game: Game, playerId: string) {
   const playerAlreadyInGame = game.players[playerId] != null;
 

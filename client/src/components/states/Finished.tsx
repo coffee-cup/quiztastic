@@ -1,6 +1,11 @@
 import * as React from "react";
-import { local, state, watch } from "../../model";
+import { dispatch, local, state, watch } from "../../model";
 import { Title } from "../Text";
+import styled from "styled-components";
+import GameOptions from "../GameOptions";
+import * as actions from "../../actions";
+
+const StyledFinished = styled.div``;
 
 const Finished = () => {
   const currentGame = watch(state.currentGame)!;
@@ -16,25 +21,31 @@ const Finished = () => {
   const youWin = winningPlayer === playerId;
   const numCorrect = game.numQuestions - game.options.startingLives;
 
-  return (
+  const ShowResults = () => (
     <>
-      {winningPlayer == null ? (
-        <Title>Draw!</Title>
-      ) : (
-        <>
-          <Title>🎉</Title>
+      {isSinglePlayerGame && <Title>{numCorrect} Correct</Title>}
 
-          {isSinglePlayerGame && <Title>{numCorrect} Correct</Title>}
-
-          {!isSinglePlayerGame &&
-            (youWin ? (
-              <Title>You Win!</Title>
-            ) : (
-              <Title>{game.players[winningPlayer].name} Won!</Title>
-            ))}
-        </>
-      )}
+      {!isSinglePlayerGame &&
+        (youWin ? (
+          <Title>You Win!</Title>
+        ) : (
+          <Title>{game.players[winningPlayer].name} Won!</Title>
+        ))}
     </>
+  );
+
+  return (
+    <StyledFinished>
+      <Title>🎉</Title>
+
+      <ShowResults />
+
+      <p>Play again?</p>
+      <GameOptions
+        buttonTitle="Start"
+        onSubmit={() => dispatch(actions.restartGame)(game.code)}
+      />
+    </StyledFinished>
   );
 };
 

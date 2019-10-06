@@ -16,6 +16,7 @@ const history = createBrowserHistory();
 
 const { Provider } = model.createStore({
   logger: true,
+  devtools: false,
   initState: {
     gameStatus: GameStatus.loading,
     currentGame: null,

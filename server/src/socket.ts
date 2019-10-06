@@ -5,10 +5,11 @@ import {
   joinGame,
   readyPlayer,
   startGame,
+  restartGame,
 } from "./game";
 import logger from "./logger";
 import * as store from "./store";
-import { Game } from "./types";
+import { Game, GameOptions } from "./types";
 
 export const setupSocketRoutes = (io: socket.Server) => {
   io.on("connection", socket => {
@@ -86,6 +87,13 @@ export const setupSocketRoutes = (io: socket.Server) => {
         answer: string;
       }) => {
         withGame(code, game => answerQuestion(game, playerId, answer));
+      },
+    );
+
+    socket.on(
+      "restart game",
+      ({ code, gameOptions }: { code: string; gameOptions: GameOptions }) => {
+        withGame(code, game => restartGame(game, gameOptions));
       },
     );
   });
