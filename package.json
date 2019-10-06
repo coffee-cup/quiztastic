@@ -6,6 +6,9 @@
   "scripts": {
     "build": "set -ex; tsc --build",
     "build:watch": "yarn build --watch",
+    "build:client": "yarn workspace quiztastic-client build",
+    "build:server": "yarn workspace quiztastic-server build",
+    "start:server": "node server/lib/index.js",
     "clean": "wsrun clean",
     "test": "wsrun --serial --exclude-missing test",
     "lint": "wsrun --serial --exclude-missing lint"

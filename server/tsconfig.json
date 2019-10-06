@@ -4,6 +4,7 @@
     "outDir": "lib",
     "target": "es6",
     "lib": ["esnext"],
+    "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
     "noFallthroughCasesInSwitch": true,
