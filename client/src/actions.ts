@@ -39,8 +39,8 @@ export const redirectHome = () => {
 };
 
 export const redirectGame = (code: string) => {
-  state.currentGame = code;
-  dispatch(push)(`/game/${code}`);
+  state.currentGame = code.trim().toLowerCase();
+  dispatch(push)(`/game/${state.currentGame}`);
 };
 
 const getCurrentGame = (state: State): Game | null => {
