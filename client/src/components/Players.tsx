@@ -7,7 +7,7 @@ const StyledPlayer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  padding-bottom: 1rem;
 `;
 
 export const PlayerName = styled.span<{ isYou: boolean; dim?: boolean }>`
@@ -33,7 +33,7 @@ const Player: React.FC<{ id: string }> = ({ id }) => {
   const isYou = watch(local.uid)! === player.id;
 
   return (
-    <StyledPlayer>
+    <StyledPlayer className="player">
       <PlayerName
         isYou={isYou}
         dim={gameState.type === "asking" && gameState.playerAnswers[id] == null}
@@ -66,7 +66,7 @@ const Players: React.FC<{ hideSelf?: boolean }> = props => {
   });
 
   return (
-    <StyledPlayers>
+    <StyledPlayers className="players">
       {readyPlayers.map(p => (
         <Player key={p.id} id={p.id} />
       ))}
