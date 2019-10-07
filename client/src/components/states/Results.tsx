@@ -4,14 +4,7 @@ import * as actions from "../../actions";
 import { dispatch, local, state, watch } from "../../model";
 import Button from "../Button";
 import Players from "../Players";
-import { Blurb, Title } from "../Text";
-
-const Answer = styled.span`
-  display: block;
-  padding-top: 0.5rem;
-  font-size: 1.4em;
-  color: ${props => props.theme.colours.purple};
-`;
+import { Title, Answer } from "../Text";
 
 const Results = () => {
   const currentGame = watch(state.currentGame)!;
@@ -36,10 +29,7 @@ const Results = () => {
 
   return (
     <>
-      <Blurb>
-        The answer was{" "}
-        <Answer dangerouslySetInnerHTML={{ __html: game.gameState.answer }} />
-      </Blurb>
+      <Answer answer={game.gameState.answer} />
 
       <Title>
         {isDead ? (

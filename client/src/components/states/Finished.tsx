@@ -3,7 +3,7 @@ import styled from "styled-components";
 import * as actions from "../../actions";
 import { dispatch, local, state, watch } from "../../model";
 import GameOptions from "../GameOptions";
-import { Title } from "../Text";
+import { Answer, Title } from "../Text";
 
 const StyledFinished = styled.div``;
 
@@ -37,8 +37,9 @@ const Finished = () => {
   return (
     <StyledFinished>
       <Title>🎉</Title>
-
       <ShowResults />
+
+      <Answer answer={game.gameState.correctAnswer} />
 
       <p>Play again?</p>
       <GameOptions

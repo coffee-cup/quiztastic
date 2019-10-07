@@ -33,6 +33,7 @@ export interface ResultsState {
 export interface FinishedState {
   type: "finished";
   winnerId: string;
+  correctAnswer: string;
 }
 
 export interface LoadingState {

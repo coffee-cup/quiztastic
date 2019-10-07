@@ -202,6 +202,7 @@ export async function* answerQuestion(
         game.gameState = {
           type: "finished",
           winnerId: player.id,
+          correctAnswer: state.correctAnswer,
         };
       } else {
         game.gameState = {
@@ -230,6 +231,7 @@ export async function* answerQuestion(
         game.gameState = {
           type: "finished",
           winnerId: remainingPlayers[0].id,
+          correctAnswer: state.correctAnswer,
         };
       } else {
         game.gameState = {
