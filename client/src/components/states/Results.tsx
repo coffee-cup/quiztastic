@@ -32,7 +32,7 @@ const Results = () => {
   const isAdminAlive = game.players[game.admin].lives > 0;
   const showNextButtonTo = isAdminAlive
     ? game.admin
-    : Object.values(game.players).filter(p => p.lives > 0)[0];
+    : Object.values(game.players).filter(p => p.lives > 0)[0].id;
 
   return (
     <>
