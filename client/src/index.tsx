@@ -40,7 +40,7 @@ const render = () =>
   );
 
 if (module.hot) {
-  module.hot.accept(() => {
+  module.hot.accept("./App", () => {
     render();
   });
 }
