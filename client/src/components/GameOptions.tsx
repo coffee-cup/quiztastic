@@ -77,7 +77,9 @@ const GameOptions: React.FC<{
       />
       <SelectGroup
         value={createGameState.startingLives}
-        onChange={dispatch(actions.selectStartingLives)}
+        onChange={value =>
+          dispatch(actions.selectStartingLives)(parseInt(value, 10))
+        }
         name="Starting Lives"
         options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
       />

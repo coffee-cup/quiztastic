@@ -40,9 +40,12 @@ const Player: React.FC<{ id: string }> = ({ id }) => {
       >
         {player.name}
       </PlayerName>
-
       {gameState.type !== "asking" && (
-        <PlayerInfo>{isSuddenDeath ? "*" : `${player.lives} lives`}</PlayerInfo>
+        <PlayerInfo>
+          {isSuddenDeath
+            ? "*"
+            : `${player.lives} ${player.lives === 1 ? "life" : "lives"}`}
+        </PlayerInfo>
       )}
     </StyledPlayer>
   );
