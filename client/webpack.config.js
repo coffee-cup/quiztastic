@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const path = require("path");
+const webpack = require("webpack");
 
 const APP_PATH = path.resolve(__dirname, "src");
 const PUBLIC_PATH = path.resolve(__dirname, "public");
@@ -133,5 +134,6 @@ module.exports = {
       async: config.asyncTypeChecking,
       useTypescriptIncrementalApi: true,
     }),
+    new webpack.EnvironmentPlugin(["NODE_ENV", "BASE_URL"]),
   ].filter(Boolean),
 };
