@@ -3,9 +3,9 @@ import * as http from "http";
 import * as Koa from "koa";
 import * as bodyParser from "koa-bodyparser";
 import * as socket from "socket.io";
-import { setupSocketRoutes } from "./socket";
 import logger from "./logger";
 import router from "./routes";
+import { setupSocketRoutes } from "./socket";
 import * as store from "./store";
 
 const PORT = process.env.PORT || 3000;

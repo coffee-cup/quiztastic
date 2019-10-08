@@ -1,6 +1,6 @@
 import * as dogNames from "dog-names";
 import logger from "./logger";
-import { getSession, getQuestion } from "./trivia";
+import { getQuestion, getSession } from "./trivia";
 import { AskingState, Game, GameOptions, Player } from "./types";
 import { shuffle } from "./utils";
 

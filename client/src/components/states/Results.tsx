@@ -1,10 +1,9 @@
 import * as React from "react";
-import styled from "styled-components";
 import * as actions from "../../actions";
 import { dispatch, local, state, watch } from "../../model";
 import Button from "../Button";
 import Players from "../Players";
-import { Title, Answer } from "../Text";
+import { Answer, Title } from "../Text";
 
 const Results = () => {
   const currentGame = watch(state.currentGame)!;

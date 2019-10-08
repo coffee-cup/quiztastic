@@ -17,3 +17,7 @@ export const isCodeAvailable = (code: string): boolean => {
   const game = getGame(code);
   return game == null;
 };
+
+export const getAllGameCodes = (): string[] => {
+  return gameCache.keys();
+};

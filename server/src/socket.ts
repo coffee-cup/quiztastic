@@ -4,8 +4,8 @@ import {
   answerQuestion,
   joinGame,
   readyPlayer,
-  startGame,
   restartGame,
+  startGame,
 } from "./game";
 import logger from "./logger";
 import * as store from "./store";

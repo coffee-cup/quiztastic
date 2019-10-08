@@ -1,4 +1,5 @@
 export interface State {
+  gameCodes?: string[];
   categories?: string[];
   difficulties?: string[];
   createGameOptions?: GameOptions;

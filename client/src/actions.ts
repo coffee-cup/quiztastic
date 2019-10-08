@@ -174,3 +174,7 @@ export const createGame = async () => {
 
   dispatch(redirectGame)(game.code);
 };
+
+export const getAllGameCodes = async () => {
+  state.gameCodes = await api.getAllGameCodes();
+};

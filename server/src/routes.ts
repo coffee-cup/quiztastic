@@ -1,7 +1,7 @@
 import * as Router from "koa-router";
 import { createGame, createPlayer, randomCode } from "./game";
 import logger from "./logger";
-import { getGame, isCodeAvailable, saveGame } from "./store";
+import { getAllGameCodes, getGame, isCodeAvailable, saveGame } from "./store";
 import { categories, difficulties } from "./trivia";
 import { GameOptions } from "./types";
 import { verifyString } from "./verify";
@@ -17,6 +17,11 @@ router.get("/api/game/:code", async ctx => {
   }
 
   ctx.body = game;
+});
+
+router.get("/api/games", async ctx => {
+  const gameCodes = getAllGameCodes();
+  ctx.body = gameCodes;
 });
 
 router.post("/api/game", async ctx => {

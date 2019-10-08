@@ -5,6 +5,7 @@ import * as actions from "./actions";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import { dispatch } from "./model";
+import Admin from "./pages/Admin";
 import Create from "./pages/Create";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
@@ -39,6 +40,7 @@ const App = () => {
               <Route path="/join" component={Join} />
               <Route path="/create" component={Create} />
               <Route path="/game/:code" component={Game} />
+              <Route path="/admin" component={Admin} />
 
               <Route component={NotFound} />
             </Switch>
