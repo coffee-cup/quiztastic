@@ -2,6 +2,7 @@ import { Route, Switch } from "@prodo/route";
 import * as React from "react";
 import styled from "styled-components";
 import * as actions from "./actions";
+import * as api from "./api";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import { dispatch } from "./model";
@@ -26,6 +27,15 @@ const Page = styled.div`
 const App = () => {
   React.useEffect(() => {
     dispatch(actions.ensurePlayerUid)();
+  }, []);
+
+  // ensure server is alive
+  React.useEffect(() => {
+    const ping = async () => {
+      await api.ping();
+      setTimeout(ping, 10000);
+    };
+    ping();
   }, []);
 
   return (

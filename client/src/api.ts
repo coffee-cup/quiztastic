@@ -7,6 +7,7 @@ const apiRoutes = {
   categories: () => `trivia/categories`,
   difficulties: () => `trivia/difficulties`,
   allGameCodes: () => `games`,
+  ping: () => `ping`,
 };
 
 const apiUrl = (path: string): string => `${baseUrl}/${path}`;
@@ -52,3 +53,5 @@ export const getDifficulties = (): Promise<string[]> =>
 
 export const getAllGameCodes = (): Promise<string[]> =>
   get(apiUrl(apiRoutes.allGameCodes()));
+
+export const ping = () => get(apiUrl(apiRoutes.ping()));

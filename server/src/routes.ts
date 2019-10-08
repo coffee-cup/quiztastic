@@ -19,6 +19,10 @@ router.get("/api/game/:code", async ctx => {
   ctx.body = game;
 });
 
+router.get("/api/ping", async ctx => {
+  ctx.body = { status: "ok" };
+});
+
 router.get("/api/games", async ctx => {
   const gameCodes = getAllGameCodes();
   ctx.body = gameCodes;
