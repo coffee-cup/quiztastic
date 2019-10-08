@@ -7,7 +7,6 @@ import { model } from "./model";
 import { theme } from "./styles";
 import typography from "./styles/typography";
 import { GameStatus } from "./types";
-import "regenerator-runtime/runtime";
 
 import "./index.scss";
 
