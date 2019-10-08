@@ -8,6 +8,10 @@ import { verifyString } from "./verify";
 
 const router = new Router();
 
+router.get("/", async ctx => {
+  ctx.body = "Hello :D";
+});
+
 router.get("/api/game/:code", async ctx => {
   const code: string = ctx.params.code;
   const game = getGame(code);
