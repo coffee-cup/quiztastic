@@ -87,7 +87,7 @@ const WaitingRoom = () => {
       )}
 
       {player.ready && !player.admin && (
-        <h3>{"Waiting for game to start... ヾ(￣0￣ )ノ"}</h3>
+        <h3>{"Waiting for game to start..."}</h3>
       )}
 
       <FormGroup label="players">
