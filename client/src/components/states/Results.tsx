@@ -47,7 +47,11 @@ const Results = () => {
       )}
 
       {showNextButtonTo === playerId && (
-        <Button onClick={dispatch(actions.advanceRound)}>Next Question</Button>
+        <p>
+          <Button onClick={dispatch(actions.advanceRound)}>
+            Next Question
+          </Button>
+        </p>
       )}
 
       <Players />
