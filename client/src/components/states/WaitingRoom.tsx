@@ -90,7 +90,7 @@ const WaitingRoom = () => {
         <h3>{"Waiting for game to start..."}</h3>
       )}
 
-      <FormGroup label="players">
+      <FormGroup>
         <Players />
       </FormGroup>
     </StyledWaitingRoom>
