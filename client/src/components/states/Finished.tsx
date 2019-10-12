@@ -20,6 +20,7 @@ const Finished = () => {
   const winningPlayer = game.gameState.winnerId;
   const youWin = winningPlayer === playerId;
   const numCorrect = game.numQuestions - game.options.startingLives;
+  const isAdmin = game.admin === playerId;
 
   const ShowResults = () => (
     <>
@@ -41,11 +42,15 @@ const Finished = () => {
 
       <Answer answer={game.gameState.correctAnswer} />
 
-      <p>Play again?</p>
-      <GameOptions
-        buttonTitle="Start"
-        onSubmit={() => dispatch(actions.restartGame)(game.code)}
-      />
+      {isAdmin && (
+        <>
+          <p>Play again?</p>
+          <GameOptions
+            buttonTitle="Start"
+            onSubmit={() => dispatch(actions.restartGame)(game.code)}
+          />
+        </>
+      )}
     </StyledFinished>
   );
 };
