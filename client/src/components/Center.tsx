@@ -6,7 +6,7 @@ const Center = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  min-height: calc(100vh - ${padding * 2}rem - ${HeaderHeight}px);
+  min-height: calc(100vh - ${HeaderHeight}px);
   padding-top: ${padding}rem;
   padding-bottom: ${padding}rem;
   text-align: center;

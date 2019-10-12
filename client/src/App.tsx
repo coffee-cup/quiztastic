@@ -14,7 +14,6 @@ import Join from "./pages/Join";
 import NotFound from "./pages/NotFound";
 
 const Page = styled.div`
-  padding-bottom: 2rem;
   min-height: 100vh;
   color: ${props => props.theme.colours.text};
   background: linear-gradient(

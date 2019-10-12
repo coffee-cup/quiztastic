@@ -1,7 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
 import { ButtonLink } from "../components/Button";
-import Center from "../components/Center";
 import Container from "../components/Container";
 import { Blurb, Title } from "../components/Text";
 
@@ -13,17 +12,25 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
+const HomePageCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: calc(100vh);
+  text-align: center;
+`;
+
 const Home = () => (
   <StyledHome>
     <Container>
-      <Center>
+      <HomePageCenter>
         <Title>Quiztastic!</Title>
         <Blurb>A trivia game to play with friends and family</Blurb>
         <ButtonContainer>
           <ButtonLink to="/join">Join Game</ButtonLink>
           <ButtonLink to="/create">Create Game</ButtonLink>
         </ButtonContainer>
-      </Center>
+      </HomePageCenter>
     </Container>
   </StyledHome>
 );
