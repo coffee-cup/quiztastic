@@ -4,6 +4,7 @@ import * as actions from "../actions";
 import { dispatch, state, watch } from "../model";
 import Button from "./Button";
 import Select from "./Select";
+import Loading from "./Loading";
 
 const Group = styled.div`
   display: flex;
@@ -52,8 +53,8 @@ const GameOptions: React.FC<{
   const difficulties = watch(state.difficulties);
   const createGameState = watch(state.createGameOptions);
 
-  if (createGameState == null) {
-    return null;
+  if (createGameState == null || categories == null || difficulties == null) {
+    return <Loading />;
   }
 
   return (
