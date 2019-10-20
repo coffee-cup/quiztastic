@@ -17,7 +17,6 @@ const Button = styled.button<{ selected?: boolean }>`
   color: white;
   border-radius: 2px;
   font-weight: bold;
-  text-transform: uppercase;
   cursor: pointer;
   transition: transform 250ms ease-in-out;
 
