@@ -37,3 +37,25 @@ export const ButtonLink: React.FC<{ to: string }> = props => (
     {props.children}
   </AnyButton>
 );
+
+export const AnimatedButton = styled(Button)<{ delay?: number }>`
+  animation-name: slideIn;
+  animation-duration: 400ms;
+  animation-timing-function: ease-in-out;
+  animation-delay: ${props => (props.delay || 0) * 100}ms;
+  animation-fill-mode: forwards;
+
+  opacity: 0;
+  transform: translate(-100%);
+
+  @keyframes slideIn {
+    0% {
+      opacity: 1;
+      transform: translate(-150%);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+`;
