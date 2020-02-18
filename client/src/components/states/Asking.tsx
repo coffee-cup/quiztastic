@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import * as actions from "../../actions";
 import { dispatch, local, state, watch } from "../../model";
-import { AnimatedButton } from "../Button";
+import Button from "../Button";
 import Players from "../Players";
 import { Title } from "../Text";
 
@@ -31,16 +31,15 @@ const Asking = () => {
 
       {isDead && <h2>☠️ You are dead and cannot answer ☠️</h2>}
 
-      {game.gameState.possibleAnswers.map((q, i) => (
-        <AnimatedButton
+      {game.gameState.possibleAnswers.map((q, _i) => (
+        <Button
           key={q}
-          delay={i}
           disabled={isDead}
           onClick={() => dispatch(actions.answerQuestion)(q)}
           selected={userAnswer != null && userAnswer === q}
         >
           <span dangerouslySetInnerHTML={{ __html: q }} />
-        </AnimatedButton>
+        </Button>
       ))}
 
       <Players hideSelf />

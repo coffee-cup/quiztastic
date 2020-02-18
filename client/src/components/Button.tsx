@@ -40,7 +40,7 @@ export const ButtonLink: React.FC<{ to: string }> = props => (
 
 export const AnimatedButton = styled(Button)<{ delay?: number }>`
   animation-name: slideIn;
-  animation-duration: 400ms;
+  animation-duration: 150ms;
   animation-timing-function: ease-in-out;
   animation-delay: ${props => (props.delay || 0) * 100}ms;
   animation-fill-mode: forwards;
