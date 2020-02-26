@@ -91,7 +91,7 @@ const WaitingRoom = () => {
       )}
 
       <FormGroup>
-        <Players />
+        <Players showPlayersJoinMessage={player.ready} />
       </FormGroup>
     </StyledWaitingRoom>
   );

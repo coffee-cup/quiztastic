@@ -24,6 +24,12 @@ export const PlayerInfo = styled.span`
   font-weight: bold;
 `;
 
+const PlayersAddedMessage = styled.span`
+  color: lightgrey;
+  font-size: 1.1em;
+  font-weight: bold;
+`;
+
 const Player: React.FC<{ id: string }> = ({ id }) => {
   const currentGame = watch(state.currentGame)!;
   const gameState = watch(state.games[currentGame].gameState);
@@ -55,7 +61,10 @@ const StyledPlayers = styled.div`
   text-align: left;
 `;
 
-const Players: React.FC<{ hideSelf?: boolean }> = props => {
+const Players: React.FC<{
+  hideSelf?: boolean;
+  showPlayersJoinMessage?: boolean;
+}> = props => {
   const currentGame = watch(state.currentGame)!;
   const players = watch(state.games[currentGame].players);
   const playerId = watch(local.uid)!;
@@ -75,6 +84,12 @@ const Players: React.FC<{ hideSelf?: boolean }> = props => {
       ))}
 
       {readyPlayer.length === 0 && <h4>No players ready</h4>}
+
+      {props.showPlayersJoinMessage && (
+        <PlayersAddedMessage>
+          ... when players join they will appear here ...
+        </PlayersAddedMessage>
+      )}
     </StyledPlayers>
   );
 };
