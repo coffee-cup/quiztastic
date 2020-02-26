@@ -3,21 +3,13 @@ import styled from "styled-components";
 import { ButtonLink } from "../components/Button";
 import { Title } from "../components/Text";
 import Center from "../components/Center";
+import { ExternalLink } from "../components/Link";
+import Footer from "../components/Footer";
 
 const StyledAbout = styled.div``;
 
 const Message = styled.p`
   font-size: 1.1em;
-`;
-
-const ExternalLink = styled.a`
-  color: white;
-  text-decoration: underline;
-  transition: opacity 150ms ease-in-out;
-
-  &:hover {
-    opacity: 0.6;
-  }
 `;
 
 const LeftAligned = styled.div`
@@ -40,11 +32,7 @@ const About = () => (
 
         <Message>
           All questions come from the{" "}
-          <ExternalLink
-            href="https://opentdb.com/"
-            target="_blank"
-            rel="noopener"
-          >
+          <ExternalLink href="https://opentdb.com/">
             Open Trivia Database
           </ExternalLink>
           .
@@ -53,6 +41,8 @@ const About = () => (
         <ButtonLink to="/">Play</ButtonLink>
       </LeftAligned>
     </Center>
+
+    <Footer />
   </StyledAbout>
 );
 

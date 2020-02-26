@@ -4,6 +4,7 @@ import { ButtonLink } from "../components/Button";
 import Container from "../components/Container";
 import { Blurb, Title } from "../components/Text";
 import { Link } from "../components/Link";
+import Footer from "../components/Footer";
 
 const StyledHome = styled.div``;
 
@@ -43,6 +44,8 @@ const Home = () => (
         </AboutMessage>
       </HomePageCenter>
     </Container>
+
+    <Footer />
   </StyledHome>
 );
 
