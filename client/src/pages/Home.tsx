@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ButtonLink } from "../components/Button";
 import Container from "../components/Container";
 import { Blurb, Title } from "../components/Text";
-import { Link } from "../components/Link";
+import { Link, ExternalLink } from "../components/Link";
 import Footer from "../components/Footer";
 
 const StyledHome = styled.div``;
@@ -23,6 +23,9 @@ const HomePageCenter = styled.div`
 `;
 
 const AboutMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding-top: 1rem;
   text-align: right;
   font-weight: bold;
@@ -41,6 +44,9 @@ const Home = () => (
 
         <AboutMessage>
           <Link to="/about">What is this?</Link>
+          <ExternalLink href="https://opentdb.com/">
+            Questions from OpenTDB
+          </ExternalLink>
         </AboutMessage>
       </HomePageCenter>
     </Container>
