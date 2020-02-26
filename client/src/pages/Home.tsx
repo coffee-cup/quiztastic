@@ -45,7 +45,7 @@ const Home = () => (
         <AboutMessage>
           <Link to="/about">What is this?</Link>
           <ExternalLink href="https://opentdb.com/">
-            Questions from OpenTDB
+            Questions from Open Triva DB
           </ExternalLink>
         </AboutMessage>
       </HomePageCenter>

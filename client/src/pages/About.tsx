@@ -33,7 +33,7 @@ const About = () => (
         <Message>
           All questions come from the{" "}
           <ExternalLink href="https://opentdb.com/">
-            Open Trivia Database
+            Open Trivia DB
           </ExternalLink>
           .
         </Message>
