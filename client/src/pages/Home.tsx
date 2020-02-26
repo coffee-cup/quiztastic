@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ButtonLink } from "../components/Button";
 import Container from "../components/Container";
 import { Blurb, Title } from "../components/Text";
+import { Link } from "../components/Link";
 
 const StyledHome = styled.div``;
 
@@ -20,6 +21,12 @@ const HomePageCenter = styled.div`
   text-align: center;
 `;
 
+const AboutMessage = styled.div`
+  padding-top: 1rem;
+  text-align: right;
+  font-weight: bold;
+`;
+
 const Home = () => (
   <StyledHome>
     <Container>
@@ -30,6 +37,10 @@ const Home = () => (
           <ButtonLink to="/join">Join Game</ButtonLink>
           <ButtonLink to="/create">Create Game</ButtonLink>
         </ButtonContainer>
+
+        <AboutMessage>
+          <Link to="/about">What is this?</Link>
+        </AboutMessage>
       </HomePageCenter>
     </Container>
   </StyledHome>

@@ -12,6 +12,7 @@ import Game from "./pages/Game";
 import Home from "./pages/Home";
 import Join from "./pages/Join";
 import NotFound from "./pages/NotFound";
+import About from "./pages/About";
 
 const Page = styled.div`
   min-height: 100vh;
@@ -50,6 +51,7 @@ const App = () => {
               <Route path="/create" component={Create} />
               <Route path="/game/:code" component={Game} />
               <Route path="/admin" component={Admin} />
+              <Route path="/about" component={About} />
 
               <Route component={NotFound} />
             </Switch>
