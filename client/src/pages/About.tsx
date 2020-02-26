@@ -24,9 +24,9 @@ const About = () => (
 
         <Message>
           Quiztastic is trivia game designed to be played with multiple people.
-          Everyone connects to the same game starts with the same amount of
+          Everyone connects to the same game and starts with the same amount of
           lives. If you get a question incorrect, you lose a life. The last one
-          remaining wins.You can also play by yourself and see how many
+          remaining wins. You can also play by yourself and see how many
           questions you can answer correctly before running out of lives.
         </Message>
 
@@ -34,6 +34,14 @@ const About = () => (
           All questions come from the{" "}
           <ExternalLink href="https://opentdb.com/">
             Open Trivia Database
+          </ExternalLink>
+          .
+        </Message>
+
+        <Message>
+          The source code for this site can be found on{" "}
+          <ExternalLink href="https://github.com/coffee-cup/quiztastic/">
+            Github
           </ExternalLink>
           .
         </Message>
