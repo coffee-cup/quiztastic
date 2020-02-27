@@ -26,7 +26,7 @@ export const PlayerInfo = styled.span`
 
 const PlayersAddedMessage = styled.span`
   color: lightgrey;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
 `;
 
