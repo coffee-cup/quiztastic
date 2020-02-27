@@ -17,7 +17,7 @@ const GameInfo: React.FC<{
   difficulty: string;
 }> = props => (
   <StyledGameInfo>
-    <FormGroup label="game code">
+    <FormGroup label="game code (share with others)">
       <h1>{props.code}</h1>
     </FormGroup>
     <FormGroup label="category">
