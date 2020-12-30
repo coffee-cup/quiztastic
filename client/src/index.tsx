@@ -18,7 +18,6 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const { Provider } = model.createStore({
   logger: !isProduction,
-  devtools: false,
   initState: {
     gameStatus: GameStatus.loading,
     currentGame: null,
