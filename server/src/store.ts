@@ -10,7 +10,7 @@ export const saveGame = (game: Game) => {
 };
 
 export const getGame = (code: string): Game | undefined => {
-  return gameCache.get(code);
+  return gameCache.get(code) ?? undefined;
 };
 
 export const isCodeAvailable = (code: string): boolean => {
